@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 class ViewController: UIViewController {
     @IBOutlet weak var username: UITextField! // should be email, mistyped
@@ -36,11 +37,40 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func signInWithGoogle(_ sender: UIButton) {
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
+            
+            guard error == nil else { print("error: \(error!)"); return }
+            guard let signInResult = signInResult else { return }
+            
+            signInResult.user.refreshTokensIfNeeded { user, error in
+                guard error == nil else { print("error: \(error!)"); return }
+                guard let user = user else { return }
+                
+                guard let id = user.idToken else { return }
+                
+                NetworkManager.shared.request(api: OAuthAPI.google(token: id.tokenString)) { (result: Result<GoogleOAuthResponse, NetworkError>) in
+                    switch result {
+                    case .success:
+                        DispatchQueue.main.async {
+                            self.status.text = "Signed in with Google successfully!"
+                        }
+                        
+                    case .failure(let error):
+                        DispatchQueue.main.async {
+                            self.status.text = "Unable to sign in with Google currently"
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     @IBAction func register(_ sender: UIButton) {
         NetworkManager.shared.request(api: AuthAPI.register(firstName: "John", lastName: "Doe", email: username.text!, password: password.text!)) { (result: Result<RegistrationResponse, NetworkError>) in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let response):
+                case .success:
                     self.status.text = "Successfully registered!"
                     
                 case .failure(let error):

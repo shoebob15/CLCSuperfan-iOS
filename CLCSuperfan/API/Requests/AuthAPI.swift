@@ -16,7 +16,7 @@ enum AuthAPI: APIProtocol {
     case login(email: String, password: String)
     
     var url: URL {
-        let baseURL = "http://localhost:1924/auth"
+        let baseURL = "\(NetworkManager.apiUrl)/auth"
         
         switch self {
         case .register:
