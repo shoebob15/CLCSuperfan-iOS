@@ -19,6 +19,8 @@ enum NetworkError: Error {
 class NetworkManager {
     static let shared = NetworkManager()
     
+    static let apiUrl = "http://192.168.1.16:1924"
+    
     private let session = URLSession.shared
     
     func request<T: Decodable>(api: some APIProtocol, completion: @escaping (Result<T, NetworkError>) -> Void) {

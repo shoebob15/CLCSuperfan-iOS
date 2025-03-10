@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5AB77DFF2D7B34D800D8E7D9 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 5AB77DFE2D7B34D800D8E7D9 /* GoogleSignIn */; };
+		FEEA3AA02D7D363E00D0F337 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = FEEA3A9F2D7D363E00D0F337 /* GoogleSignIn */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5AB77DFF2D7B34D800D8E7D9 /* GoogleSignIn in Frameworks */,
+				FEEA3AA02D7D363E00D0F337 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +83,7 @@
 			);
 			name = CLCSuperfan;
 			packageProductDependencies = (
-				5AB77DFE2D7B34D800D8E7D9 /* GoogleSignIn */,
+				FEEA3A9F2D7D363E00D0F337 /* GoogleSignIn */,
 			);
 			productName = CLCSuperfan;
 			productReference = FE1218702D794F8F00A5254D /* CLCSuperfan.app */;
@@ -114,7 +114,7 @@
 			mainGroup = FE1218672D794F8F00A5254D;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				5AB77DFD2D7B34D800D8E7D9 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				FEEA3A9E2D7D363E00D0F337 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FE1218712D794F8F00A5254D /* Products */;
@@ -154,7 +154,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M432L3BRX5;
+				DEVELOPMENT_TEAM = L9827676Q8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CLCSuperfan/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "CLC Superfan";
@@ -189,7 +189,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M432L3BRX5;
+				DEVELOPMENT_TEAM = L9827676Q8;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CLCSuperfan/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "CLC Superfan";
@@ -360,7 +360,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5AB77DFD2D7B34D800D8E7D9 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+		FEEA3A9E2D7D363E00D0F337 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
 			requirement = {
@@ -371,9 +371,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		5AB77DFE2D7B34D800D8E7D9 /* GoogleSignIn */ = {
+		FEEA3A9F2D7D363E00D0F337 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5AB77DFD2D7B34D800D8E7D9 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			package = FEEA3A9E2D7D363E00D0F337 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignIn;
 		};
 /* End XCSwiftPackageProductDependency section */
