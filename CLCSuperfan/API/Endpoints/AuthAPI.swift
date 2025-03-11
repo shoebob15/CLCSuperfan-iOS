@@ -33,7 +33,7 @@ enum AuthAPI: APIProtocol {
         }
     }
     
-    // returns nil if request doesn't have a body (ex: DELETE or GET)
+    // returns nil if request doesn't have a body (ex: GET)
     var body: [String: Any]? {
         switch self {
         case let .register(firstName, lastName, email, password):

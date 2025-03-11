@@ -19,7 +19,7 @@ enum NetworkError: Error {
 class NetworkManager {
     static let shared = NetworkManager()
     
-    static let apiUrl = "http://192.168.1.16:1924"
+    static let apiUrl = "http://localhost:1924"
     
     private let session = URLSession.shared
     
@@ -27,6 +27,10 @@ class NetworkManager {
         var request = URLRequest(url: api.url)
         request.httpMethod = api.method
         request.allHTTPHeaderFields = ["Content-Type": "application/json"]
+        
+        if let token = AuthManager.token {
+            request.setValue(token, forHTTPHeaderField: "Authorization")
+        }
         
         if let body = api.body {
             do {

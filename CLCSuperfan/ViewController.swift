@@ -25,6 +25,8 @@ class ViewController: UIViewController {
                 case .success(let response):
                     self.status.text = "Logged in and assigned JWT \(response.token)"
                     
+                    self.authenticate(response.token)
+                    
                 case .failure(let error):
                     switch error {
                     case .unauthorized:
@@ -51,10 +53,8 @@ class ViewController: UIViewController {
                 
                 NetworkManager.shared.request(api: OAuthAPI.google(token: id.tokenString)) { (result: Result<GoogleOAuthResponse, NetworkError>) in
                     switch result {
-                    case .success:
-                        DispatchQueue.main.async {
-                            self.status.text = "Signed in with Google successfully!"
-                        }
+                    case .success(let response):
+                        self.authenticate(response.token)
                         
                     case .failure(let error):
                         DispatchQueue.main.async {
@@ -78,6 +78,15 @@ class ViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    // will configure app state with token and
+    // segues to main view
+    private func authenticate(_ token: String) {
+        AuthManager.authenticated = true
+        AuthManager.token = token
+        
+        self.dismiss(animated: true)
     }
 }
 
