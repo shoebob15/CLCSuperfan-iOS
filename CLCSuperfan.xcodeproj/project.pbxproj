@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5AF7FE562D845F2C00EFDC0A /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5AF7FE552D845F2C00EFDC0A /* KeychainSwift */; };
 		FEEA3AA02D7D363E00D0F337 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = FEEA3A9F2D7D363E00D0F337 /* GoogleSignIn */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AF7FE562D845F2C00EFDC0A /* KeychainSwift in Frameworks */,
 				FEEA3AA02D7D363E00D0F337 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,6 +86,7 @@
 			name = CLCSuperfan;
 			packageProductDependencies = (
 				FEEA3A9F2D7D363E00D0F337 /* GoogleSignIn */,
+				5AF7FE552D845F2C00EFDC0A /* KeychainSwift */,
 			);
 			productName = CLCSuperfan;
 			productReference = FE1218702D794F8F00A5254D /* CLCSuperfan.app */;
@@ -115,6 +118,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				FEEA3A9E2D7D363E00D0F337 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				5AF7FE542D845F2C00EFDC0A /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FE1218712D794F8F00A5254D /* Products */;
@@ -360,6 +364,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5AF7FE542D845F2C00EFDC0A /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 24.0.0;
+			};
+		};
 		FEEA3A9E2D7D363E00D0F337 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
@@ -371,6 +383,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5AF7FE552D845F2C00EFDC0A /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5AF7FE542D845F2C00EFDC0A /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
 		FEEA3A9F2D7D363E00D0F337 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FEEA3A9E2D7D363E00D0F337 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;

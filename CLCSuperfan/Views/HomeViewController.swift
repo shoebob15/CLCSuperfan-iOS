@@ -11,6 +11,8 @@ class HomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        AuthManager.setup()
+        
         // TODO: save refresh token to keychain
         if !AuthManager.authenticated {
             performSegue(withIdentifier: "authSegue", sender: self)
