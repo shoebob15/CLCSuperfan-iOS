@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var status: UILabel!
     
+    var vc: HomeViewController! = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -85,7 +87,7 @@ class ViewController: UIViewController {
     private func authenticate(_ token: String) {
         AuthManager.authenticated = true
         AuthManager.token = token
-        
+        vc.refresh()
         self.dismiss(animated: true)
     }
 }
