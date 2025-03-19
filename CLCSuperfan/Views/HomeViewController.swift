@@ -10,8 +10,11 @@ import UIKit
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var eventTable: UITableView!
     
+    @IBOutlet weak var greeting: UILabel!
+    @IBOutlet weak var pointsLabel: UILabel!
     var events = [Event]()
     var selectedEvent: Event! = nil
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -26,6 +29,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             fetchEvents()
         }
         
+    }
+    
+    override func viewDidLoad() {
+        NetworkManager.shared.request(api: UserAPI.user) { (result: Result<User, NetworkError>) in
+            switch result {
+            case .success(let result):
+                self.greeting.text = "Welcome back, \(result.firstName)"
+                self.pointsLabel.text = "Points: \(result.points)"
+            case .failure:
+                print("couldn't fetch user data")
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

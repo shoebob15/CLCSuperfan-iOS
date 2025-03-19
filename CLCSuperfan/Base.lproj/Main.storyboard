@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="OXn-QB-RkI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pBu-do-RLj">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -93,7 +93,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fh9-ys-DRb">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="164" width="393" height="654"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -123,6 +123,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome back, User!" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Un8-Lh-kK4">
+                                <rect key="frame" x="16" y="69" width="361" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Points: 12" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8F-VS-vqc">
+                                <rect key="frame" x="16" y="125" width="361" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RXb-2f-eg6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -130,13 +144,15 @@
                     <navigationItem key="navigationItem" id="qra-ix-ixb"/>
                     <connections>
                         <outlet property="eventTable" destination="fh9-ys-DRb" id="qVJ-yc-TU9"/>
+                        <outlet property="greeting" destination="Un8-Lh-kK4" id="Byq-Qq-gmB"/>
+                        <outlet property="pointsLabel" destination="K8F-VS-vqc" id="gba-hq-ylc"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="authSegue" modalPresentationStyle="overFullScreen" modalTransitionStyle="coverVertical" id="Xhj-eh-v1d"/>
                         <segue destination="eLx-Ia-XI2" kind="show" identifier="eventDetailSegue" id="bqP-qe-Xz0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OQe-5C-BiQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1747.3282442748091" y="4.9295774647887329"/>
+            <point key="canvasLocation" x="2672.5190839694656" y="4.9295774647887329"/>
         </scene>
         <!--Event Redeem View Controller-->
         <scene sceneID="Nya-FG-mTU">
@@ -180,26 +196,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cm3-kx-Yjn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2535.1145038167938" y="4.9295774647887329"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="p5h-SX-4gQ">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OXn-QB-RkI" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="wFQ-eC-XcI"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IE0-hT-Nf3">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="rIk-CL-KzG" kind="relationship" relationship="rootViewController" id="zMq-Xo-cJ6"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="c7K-Mx-9vU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="824" y="5"/>
+            <point key="canvasLocation" x="3461.8320610687019" y="4.9295774647887329"/>
         </scene>
         <!--Scanner View Controller-->
         <scene sceneID="EuV-Aa-S27">
@@ -215,7 +212,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RRV-u3-qs3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3251" y="5"/>
+            <point key="canvasLocation" x="4176.3358778625952" y="4.9295774647887329"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Jah-wt-kVQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pBu-do-RLj" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="v8E-cQ-wgp">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="rIk-CL-KzG" kind="relationship" relationship="rootViewController" id="qKx-vn-6Ly"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8cE-f3-F0g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1747.3282442748091" y="4.9295774647887329"/>
         </scene>
     </scenes>
     <resources>
