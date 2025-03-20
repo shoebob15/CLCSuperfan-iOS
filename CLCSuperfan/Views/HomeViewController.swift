@@ -15,6 +15,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var events = [Event]()
     var selectedEvent: Event! = nil
     
+    var isAdmin = false
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -86,9 +88,28 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    // refreshes data in view
+    // refreshes data in view and, if admin, will push to new vc
     func refresh() {
-        fetchEvents()
+        if isAdmin {
+            performSegue(withIdentifier: "adminSegue", sender: self)
+        } else {
+            fetchEvents()
+            
+            // TODO: repeated code
+            NetworkManager.shared.request(api: UserAPI.user) { (result: Result<User, NetworkError>) in
+                switch result {
+                case .success(let result):
+                    DispatchQueue.main.async {
+                        self.greeting.text = "Welcome back, \(result.firstName)"
+                        self.pointsLabel.text = "Points: \(result.points)"
+                        
+                        print(result.role)
+                    }
+                case .failure:
+                    print("couldn't fetch user data")
+                }
+            }
+        }
     }
 
 }

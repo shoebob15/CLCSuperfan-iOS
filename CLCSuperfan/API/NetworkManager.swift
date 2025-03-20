@@ -19,7 +19,7 @@ enum NetworkError: Error {
 class NetworkManager {
     static let shared = NetworkManager()
     
-    static let apiUrl = "https://lioness-usable-painfully.ngrok-free.app"
+    static let apiUrl = "http://localhost:1924"
     
     private let session = URLSession.shared
     
@@ -61,6 +61,12 @@ class NetworkManager {
                     return
                 }
                 
+                // don't try to decode empty responses
+                if data.isEmpty {
+                    completion(.success(EmptyResponse() as! T))
+                    return
+                }
+                
                 // decode response from server (handles completion)
                 self.decodeResponse(data: data, completion: completion)
                 
@@ -88,3 +94,6 @@ class NetworkManager {
         }
     }
 }
+
+
+struct EmptyResponse: Decodable { } // for requests that return nothing (ex: delete)

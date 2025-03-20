@@ -12,14 +12,24 @@ class ViewController: UIViewController {
     @IBOutlet weak var username: UITextField! // should be email, mistyped
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var status: UILabel!
+    @IBOutlet weak var firstName: UITextField!
+    @IBOutlet weak var lastName: UITextField!
     
     var vc: HomeViewController! = nil
+    
+    var isAdmin = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func resignKeyboard(_ sender: UIButton) {
+        username.resignFirstResponder()
+        password.resignFirstResponder()
+        firstName.resignFirstResponder()
+        lastName.resignFirstResponder()
+    }
     @IBAction func signIn(_ sender: UIButton) {
         NetworkManager.shared.request(api: AuthAPI.login(email: username.text!, password: password.text!)) { (result: Result<LoginResponse, NetworkError>) in
             DispatchQueue.main.async {
@@ -69,7 +79,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func register(_ sender: UIButton) {
-        NetworkManager.shared.request(api: AuthAPI.register(firstName: "John", lastName: "Doe", email: username.text!, password: password.text!)) { (result: Result<RegistrationResponse, NetworkError>) in
+        NetworkManager.shared.request(api: AuthAPI.register(firstName: firstName.text!, lastName: "Doe", email: username.text!, password: password.text!)) { (result: Result<RegistrationResponse, NetworkError>) in
             DispatchQueue.main.async {
                 switch result {
                 case .success:
@@ -87,6 +97,21 @@ class ViewController: UIViewController {
     private func authenticate(_ token: String) {
         AuthManager.authenticated = true
         AuthManager.token = token
+        
+        NetworkManager.shared.request(api: UserAPI.user) { (result: Result<User, NetworkError>) in
+            switch result {
+            case .success(let user):
+                if user.role == "ADMIN" {
+                    self.vc.isAdmin = true
+                    DispatchQueue.main.async {
+                        self.vc.refresh() // refresh home again
+                    }
+                }
+            case .failure(let error):
+                print("failed to get self, \(error)")
+            }
+        }
+        
         vc.refresh()
         self.dismiss(animated: true)
     }
