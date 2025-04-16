@@ -34,15 +34,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewDidLoad() {
-        NetworkManager.shared.request(api: UserAPI.user) { (result: Result<User, NetworkError>) in
-            switch result {
-            case .success(let result):
-                self.greeting.text = "Welcome back, \(result.firstName)"
-                self.pointsLabel.text = "Points: \(result.points)"
-            case .failure:
-                print("couldn't fetch user data")
-            }
-        }
+        getUser()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -94,20 +86,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             performSegue(withIdentifier: "adminSegue", sender: self)
         } else {
             fetchEvents()
-            
-            // TODO: repeated code
-            NetworkManager.shared.request(api: UserAPI.user) { (result: Result<User, NetworkError>) in
-                switch result {
-                case .success(let result):
-                    DispatchQueue.main.async {
-                        self.greeting.text = "Welcome back, \(result.firstName)"
-                        self.pointsLabel.text = "Points: \(result.points)"
-                        
-                        print(result.role)
-                    }
-                case .failure:
-                    print("couldn't fetch user data")
+            getUser()
+        }
+    }
+    
+    func getUser(){
+        NetworkManager.shared.request(api: UserAPI.user) { (result: Result<User, NetworkError>) in
+            switch result {
+            case .success(let result):
+                DispatchQueue.main.async {
+                    self.greeting.text = "Welcome back, \(result.firstName)"
+                    self.pointsLabel.text = "Points: \(result.points)"
+                    
+                    print(result.role)
                 }
+            case .failure:
+                print("couldn't fetch user data")
             }
         }
     }
