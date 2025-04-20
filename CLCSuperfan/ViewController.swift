@@ -42,6 +42,9 @@ class ViewController: UIViewController {
                     switch error {
                     case .unauthorized:
                         self.status.text = "Invalid email/password, or account hasn't been created"
+                        
+                    case .unknown: // TODO: better error handling system
+                        self.status.text = "Email already in use"
                     default:
                         self.status.text = "An error occured: \(error)"
                     }

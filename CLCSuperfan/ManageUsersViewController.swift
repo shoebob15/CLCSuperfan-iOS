@@ -79,6 +79,7 @@ class ManageUsersViewController: UIViewController, UITableViewDelegate, UITableV
         lastName.text = selectedUser?.lastName
         email.text = selectedUser?.email
         password.text = "********" // passwords are hashed, so admins can't see anyway
+        // TODO: maybe let admin change password for a user?
         password.isUserInteractionEnabled = false
         role.selectedSegmentIndex = selectedUser?.role == "USER" ? 0 : 1
         addButton.titleLabel!.text = "Edit"

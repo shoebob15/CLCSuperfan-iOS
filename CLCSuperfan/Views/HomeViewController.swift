@@ -24,6 +24,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         eventTable.dataSource = self
         AuthManager.setup()
         
+        configureRefreshControl()
+        
         // TODO: save refresh token to keychain
         if !AuthManager.authenticated {
             performSegue(withIdentifier: "authSegue", sender: self)
@@ -81,13 +83,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     // refreshes data in view and, if admin, will push to new vc
-    func refresh() {
+    // triggered also by pull to refresh on event table
+    @objc func refresh() {
         if isAdmin {
             performSegue(withIdentifier: "adminSegue", sender: self)
         } else {
             fetchEvents()
             getUser()
         }
+    }
+    
+    func configureRefreshControl() {
+        eventTable.refreshControl = UIRefreshControl()
+        eventTable.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     func getUser(){
@@ -97,13 +105,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 DispatchQueue.main.async {
                     self.greeting.text = "Welcome back, \(result.firstName)"
                     self.pointsLabel.text = "Points: \(result.points)"
-                    
-                    print(result.role)
+                    self.eventTable.refreshControl?.endRefreshing()
                 }
             case .failure:
                 print("couldn't fetch user data")
             }
         }
     }
-
+    
 }
