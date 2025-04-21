@@ -7,6 +7,10 @@
 
 import UIKit
 
+class AppData {
+    static var mostRecentScan: Date?
+}
+
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var eventTable: UITableView!
     
@@ -37,6 +41,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         getUser()
+        
+        if let lastScan = UserDefaults.standard.object(forKey: "mostRecentScan") {
+            AppData.mostRecentScan = lastScan as? Date
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
