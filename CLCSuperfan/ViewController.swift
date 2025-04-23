@@ -21,7 +21,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func resignKeyboard(_ sender: UIButton) {
@@ -43,6 +42,9 @@ class ViewController: UIViewController {
                     switch error {
                     case .unauthorized:
                         self.status.text = "Invalid email/password, or account hasn't been created"
+                        
+                    case .unknown: // TODO: better error handling system
+                        self.status.text = "Email already in use"
                     default:
                         self.status.text = "An error occured: \(error)"
                     }
@@ -79,7 +81,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func register(_ sender: UIButton) {
-        NetworkManager.shared.request(api: AuthAPI.register(firstName: firstName.text!, lastName: "Doe", email: username.text!, password: password.text!)) { (result: Result<RegistrationResponse, NetworkError>) in
+        NetworkManager.shared.request(api: AuthAPI.register(firstName: firstName.text!, lastName: lastName.text!, email: username.text!, password: password.text!)) { (result: Result<RegistrationResponse, NetworkError>) in
             DispatchQueue.main.async {
                 switch result {
                 case .success:

@@ -7,6 +7,10 @@
 
 import UIKit
 
+class AppData {
+    static var mostRecentScan: Date?
+}
+
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var eventTable: UITableView!
     
@@ -24,6 +28,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         eventTable.dataSource = self
         AuthManager.setup()
         
+        configureRefreshControl()
+        
         // TODO: save refresh token to keychain
         if !AuthManager.authenticated {
             performSegue(withIdentifier: "authSegue", sender: self)
@@ -34,15 +40,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewDidLoad() {
-        NetworkManager.shared.request(api: UserAPI.user) { (result: Result<User, NetworkError>) in
-            switch result {
-            case .success(let result):
-                self.greeting.text = "Welcome back, \(result.firstName)"
-                self.pointsLabel.text = "Points: \(result.points)"
-            case .failure:
-                print("couldn't fetch user data")
-            }
+        getUser()
+        
+        if let lastScan = UserDefaults.standard.object(forKey: "mostRecentScan") {
+            AppData.mostRecentScan = lastScan as? Date
         }
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,27 +92,34 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     // refreshes data in view and, if admin, will push to new vc
-    func refresh() {
+    // triggered also by pull to refresh on event table
+    @objc func refresh() {
         if isAdmin {
             performSegue(withIdentifier: "adminSegue", sender: self)
         } else {
             fetchEvents()
-            
-            // TODO: repeated code
-            NetworkManager.shared.request(api: UserAPI.user) { (result: Result<User, NetworkError>) in
-                switch result {
-                case .success(let result):
-                    DispatchQueue.main.async {
-                        self.greeting.text = "Welcome back, \(result.firstName)"
-                        self.pointsLabel.text = "Points: \(result.points)"
-                        
-                        print(result.role)
-                    }
-                case .failure:
-                    print("couldn't fetch user data")
+            getUser()
+        }
+    }
+    
+    func configureRefreshControl() {
+        eventTable.refreshControl = UIRefreshControl()
+        eventTable.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+    }
+    
+    func getUser(){
+        NetworkManager.shared.request(api: UserAPI.user) { (result: Result<User, NetworkError>) in
+            switch result {
+            case .success(let result):
+                DispatchQueue.main.async {
+                    self.greeting.text = "Welcome back, \(result.firstName)"
+                    self.pointsLabel.text = "Points: \(result.points)"
+                    self.eventTable.refreshControl?.endRefreshing()
                 }
+            case .failure:
+                print("couldn't fetch user data")
             }
         }
     }
-
+    
 }

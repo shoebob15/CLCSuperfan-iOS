@@ -12,7 +12,7 @@ import Foundation
 class AuthManager {
     static var authenticated = false
     static var token: String? = nil // jwt of user, is null if user is not authenticated
-    static var refresh: String? = nil
+    static var refresh: String? = nil // refresh token to keep user logged in, expires after ? months
     
     
     // load jwt and refresh jwt from keychain
