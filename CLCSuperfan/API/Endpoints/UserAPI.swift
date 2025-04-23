@@ -9,7 +9,7 @@ import Foundation
 
 enum UserAPI: APIProtocol {
     case user // get current user
-    case leaderboard
+    case leaderboard // get top ten leaderboard
     
     // ADMIN ENDPOINTS
     case users

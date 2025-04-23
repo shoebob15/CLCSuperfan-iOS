@@ -96,6 +96,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @objc func refresh() {
         if isAdmin {
             performSegue(withIdentifier: "adminSegue", sender: self)
+        } else if AuthManager.token == nil {
+            performSegue(withIdentifier: "authSegue", sender: self)
         } else {
             fetchEvents()
             getUser()
@@ -122,4 +124,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    @IBAction func signOut(_ sender: UIButton) {
+        AuthManager.token = nil
+        isAdmin = false
+        refresh()
+    }
 }
