@@ -8,9 +8,6 @@
 import UIKit
 
 class LeaderboardViewController: UIViewController{
-    
-    
-    
     var topTen = [User]()
     var username = ""
     var point = ""
