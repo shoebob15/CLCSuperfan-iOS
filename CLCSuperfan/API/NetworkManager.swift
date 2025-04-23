@@ -30,6 +30,7 @@ class NetworkManager {
         
         if let token = AuthManager.token {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            print(token)
         }
         
         if let body = api.body {
