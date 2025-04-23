@@ -19,7 +19,7 @@ enum NetworkError: Error {
 class NetworkManager {
     static let shared = NetworkManager()
     
-    static let apiUrl = "https://lioness-usable-painfully.ngrok-free.app"
+    static let apiUrl = "http://localhost:1924"
     
     private let session = URLSession.shared
     
@@ -30,6 +30,7 @@ class NetworkManager {
         
         if let token = AuthManager.token {
             request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            print(token)
         }
         
         if let body = api.body {

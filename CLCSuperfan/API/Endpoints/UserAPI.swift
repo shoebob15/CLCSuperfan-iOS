@@ -9,6 +9,7 @@ import Foundation
 
 enum UserAPI: APIProtocol {
     case user // get current user
+    case leaderboard
     
     // ADMIN ENDPOINTS
     case users
@@ -23,6 +24,9 @@ enum UserAPI: APIProtocol {
         switch self {
         case .user:
             return URL(string: "\(baseURL)/user")!
+            
+        case .leaderboard:
+            return URL(string: "\(baseURL)/leaderboard")!
             
         case .users:
             return URL(string: "\(baseURL)/users")!
@@ -43,7 +47,7 @@ enum UserAPI: APIProtocol {
     
     var method: String {
         switch self {
-        case .user, .users, .getUser:
+        case .user, .users, .getUser, .leaderboard:
             return "GET"
             
         case .createUser:
@@ -59,7 +63,7 @@ enum UserAPI: APIProtocol {
     
     var body: [String : Any]? {
         switch self {
-        case .user, .users, .getUser, .deleteUser:
+        case .user, .users, .getUser, .deleteUser, .leaderboard:
             return nil
             
         case .createUser(let user), .updateUser(_, let user):
