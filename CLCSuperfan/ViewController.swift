@@ -20,6 +20,12 @@ class ViewController: UIViewController {
     var isAdmin = false
     
     override func viewDidLoad() {
+        let passwordButton = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        passwordButton.setImage(UIImage(systemName: "eye"), for: .normal)
+        passwordButton.setTitleColor(UIColor.label, for: .normal)
+        password.rightViewMode = UITextField.ViewMode.always
+        password.rightView = passwordButton
+        
         super.viewDidLoad()
     }
     
@@ -29,6 +35,7 @@ class ViewController: UIViewController {
         firstName.resignFirstResponder()
         lastName.resignFirstResponder()
     }
+    
     @IBAction func signIn(_ sender: UIButton) {
         NetworkManager.shared.request(api: AuthAPI.login(email: username.text!, password: password.text!)) { (result: Result<LoginResponse, NetworkError>) in
             DispatchQueue.main.async {
