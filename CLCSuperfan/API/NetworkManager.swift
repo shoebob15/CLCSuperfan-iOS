@@ -18,8 +18,17 @@ enum NetworkError: Error {
 // singleton class for managing requests and respones to superfan backend
 class NetworkManager {
     static let shared = NetworkManager()
+
+    // this url is the PRODUCTION url. use this if you are running on a physical device
+    // (or simulator), or if this is a production build.
+    // NOTE: this may be blocked on school networks (idk yet), so I might have to
+    // talk to IT about getting it whitelisted
+     
+    static let apiUrl = "https://illegal-adrianna-clc-superfan-e909ede6.koyeb.app/"
     
-    static let apiUrl = "http://localhost:1924"
+    // this url is the DEBUG url. this is used when running the server locally in
+    // IntelliJ. use this url if you are testing backend changes or running in the sim
+    // static let apiUrl = "http://localhost:1924"
     
     private let session = URLSession.shared
     
