@@ -33,6 +33,12 @@ class EventRedeemViewController: UIViewController, CLLocationManagerDelegate, MK
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        map.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: Double(event.lat), longitude: Double(event.lon)), latitudinalMeters: 1000, longitudinalMeters: 1000), animated: true)
+    }
+    
     // render mkcircle as circle overlay
     func mapView(_ mapView: MKMapView, rendererFor overlay: any MKOverlay) -> MKOverlayRenderer {
         guard let circle = overlay as? MKCircle else { return MKOverlayRenderer(overlay: overlay) }
