@@ -28,6 +28,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
             switch result {
             case .success(let users):
                 self.topTen = users
+                self.tableView.reloadData()
             case .failure:
                 print("couldn't fetch user data")
             }
@@ -38,14 +39,19 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return topTen.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell") as! LeaderboardCell2
-        var i = lastInitial.index(lastInitial.startIndex, offsetBy: 1)
-        var blat = "\(topTen[indexPath.row].firstName)  \(i)"
-        var blah = "\(topTen[indexPath.row].points) \(i)"
+        var tempLast = topTen[indexPath.row].lastName
+        if let firstLetter = tempLast.first {
+            let firstLetterString = String(firstLetter)
+            print(firstLetterString)
+            tempLast = "\(firstLetterString)"
+        }
+        var blat = "\(topTen[indexPath.row].firstName)  \(tempLast)"
+        var blah = "\(topTen[indexPath.row].points)"
         cell.lab1?.text = "\(blat)"
         cell.lab2?.text = "\(blah)"
         
