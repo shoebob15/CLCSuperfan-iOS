@@ -596,13 +596,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-<<<<<<< Updated upstream
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="skD-Zd-Nwi">
-                                <rect key="frame" x="0.0" y="75" width="393" height="659"/>
-=======
+
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="skD-Zd-Nwi">
                                 <rect key="frame" x="0.0" y="75" width="393" height="743"/>
->>>>>>> Stashed changes
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome back, User!" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Un8-Lh-kK4">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="32.666666666666664"/>
@@ -618,11 +614,8 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fh9-ys-DRb">
-<<<<<<< Updated upstream
                                         <rect key="frame" x="0.0" y="68.666666666666629" width="393" height="541"/>
-=======
                                         <rect key="frame" x="0.0" y="58.666666666666686" width="393" height="684.33333333333326"/>
->>>>>>> Stashed changes
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eventCell" textLabel="Lid-ic-acc" detailTextLabel="vmc-7b-Mj1" style="IBUITableViewCellStyleValue1" id="fGU-Gf-E0L">

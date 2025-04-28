@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>CLC Superfan needs your camera to scan QR codes to verify redemptions.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>CLC Superfan needs to know your location in order to verify redemptions.</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
