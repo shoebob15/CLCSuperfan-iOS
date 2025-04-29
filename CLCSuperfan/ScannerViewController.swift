@@ -117,7 +117,8 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             case .success(let response):
                 if response.success {
                     print("event validated!")
-                    UserDefaults.standard.set(Date(), forKey: "mostRecentScan")
+                    AppData.mostRecentScan = Date()
+                    UserDefaults.standard.set(AppData.mostRecentScan, forKey: "mostRecentScan")
                     DispatchQueue.main.async {
                         self.present(success, animated: true)
                     }
