@@ -14,6 +14,9 @@ class EventRedeemViewController: UIViewController, CLLocationManagerDelegate, MK
     
     let locationManager = CLLocationManager()
     
+    @IBOutlet weak var redeemButton: UIButton!
+    
+    @IBOutlet weak var scanLabel: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -30,6 +33,14 @@ class EventRedeemViewController: UIViewController, CLLocationManagerDelegate, MK
 
         map.showAnnotations(map.annotations, animated: true)
         
+        if AppData.mostRecentScan != nil && AppData.mostRecentScan!.timeIntervalSinceNow < 3600 {
+                redeemButton.backgroundColor = .systemGray
+            scanLabel.text = "Next scan in \(AppData.mostRecentScan!.timeIntervalSinceNow / 60)mins \(AppData.mostRecentScan!.timeIntervalSinceNow.truncatingRemainder(dividingBy: 60))secs"
+                scanLabel.isHidden = false
+        } else {
+            scanLabel.isHidden = true
+            redeemButton.backgroundColor = .systemOrange
+        }
         
     }
     
@@ -51,7 +62,7 @@ class EventRedeemViewController: UIViewController, CLLocationManagerDelegate, MK
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "scanSegue" {
+        if segue.identifier == "scanSegue" && redeemButton.backgroundColor == .systemOrange {
             let vc = segue.destination as! ScannerViewController
             
             vc.event = event
