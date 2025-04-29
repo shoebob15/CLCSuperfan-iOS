@@ -62,7 +62,7 @@ class EventRedeemViewController: UIViewController, CLLocationManagerDelegate, MK
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "scanSegue" {
+        if segue.identifier == "scanSegue" && redeemButton.backgroundColor == .systemOrange {
             let vc = segue.destination as! ScannerViewController
             
             vc.event = event

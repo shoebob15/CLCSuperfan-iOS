@@ -117,13 +117,10 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             case .success(let response):
                 if response.success {
                     print("event validated!")
+                    UserDefaults.standard.set(Date(), forKey: "mostRecentScan")
                     DispatchQueue.main.async {
                         self.present(success, animated: true)
                     }
-                    let encoder = JSONEncoder()
-                       if let encoded = try? encoder.encode(Date()) {
-                                        UserDefaults.standard.set(encoded, forKey: "mostRecentScan")
-                                    }
                 } else {
                     DispatchQueue.main.async {
                         self.present(failure, animated: true)
