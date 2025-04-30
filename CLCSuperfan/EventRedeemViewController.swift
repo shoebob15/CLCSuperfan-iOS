@@ -35,7 +35,7 @@ class EventRedeemViewController: UIViewController, CLLocationManagerDelegate, MK
         
         if AppData.mostRecentScan != nil && AppData.mostRecentScan!.timeIntervalSinceNow < 3600 {
                 redeemButton.tintColor = .systemGray
-            scanLabel.text = "Next scan in \(-1.0 * AppData.mostRecentScan!.timeIntervalSinceNow.rounded(.down) / 60.0)mins \(-1 * AppData.mostRecentScan!.timeIntervalSinceNow.truncatingRemainder(dividingBy: 60).rounded(.down))secs"
+            scanLabel.text = "Next scan in \(60 + (AppData.mostRecentScan!.timeIntervalSinceNow / 60.0).rounded(.down))mins \(60 + AppData.mostRecentScan!.timeIntervalSinceNow.truncatingRemainder(dividingBy: 60).rounded(.down))secs"
                 scanLabel.isHidden = false
         } else {
             scanLabel.isHidden = true

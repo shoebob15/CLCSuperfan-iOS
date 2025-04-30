@@ -158,7 +158,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M432L3BRX5;
+				DEVELOPMENT_TEAM = D2W9S5Y7N5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CLCSuperfan/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "CLC Superfan";
@@ -174,7 +174,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shoebob.CLCSuperfan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shoebob.CLCSuperfan2025;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -193,7 +193,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = M432L3BRX5;
+				DEVELOPMENT_TEAM = D2W9S5Y7N5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CLCSuperfan/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "CLC Superfan";
@@ -209,7 +209,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shoebob.CLCSuperfan;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shoebob.CLCSuperfan2025;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
