@@ -20,13 +20,28 @@ class ViewController: UIViewController {
     var isAdmin = false
     
     override func viewDidLoad() {
+        // password and functionality from stack overflow
         let passwordButton = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
         passwordButton.setImage(UIImage(systemName: "eye"), for: .normal)
         passwordButton.setTitleColor(UIColor.label, for: .normal)
         password.rightViewMode = UITextField.ViewMode.always
         password.rightView = passwordButton
+        passwordButton.addTarget(self, action: #selector(passwordAction), for: .touchUpInside)
         
         super.viewDidLoad()
+    }
+    
+    @objc func passwordAction(sender: UIButton!) {
+        if password.isSecureTextEntry {
+            sender.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+            
+            password.isSecureTextEntry = false
+        }
+        else {
+            sender.setImage(UIImage(systemName: "eye"), for: .normal)
+            
+            password.isSecureTextEntry = true
+        }
     }
     
     @IBAction func resignKeyboard(_ sender: UIButton) {
@@ -37,27 +52,38 @@ class ViewController: UIViewController {
     }
     
     @IBAction func signIn(_ sender: UIButton) {
-        NetworkManager.shared.request(api: AuthAPI.login(email: username.text!, password: password.text!)) { (result: Result<LoginResponse, NetworkError>) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let response):
-                    self.status.text = "Logged in and assigned JWT \(response.token)"
-                    
-                    self.authenticate(response.token)
-                    
-                case .failure(let error):
-                    switch error {
-                    case .unauthorized:
-                        self.status.text = "Invalid email/password, or account hasn't been created"
-                        
-                    case .unknown: // TODO: better error handling system
-                        self.status.text = "Email already in use"
-                    default:
-                        self.status.text = "An error occured: \(error)"
+        if let username = username.text {
+            if let password = password.text {
+                NetworkManager.shared.request(api: AuthAPI.login(email: username, password: password)) { (result: Result<LoginResponse, NetworkError>) in
+                    DispatchQueue.main.async {
+                        switch result {
+                        case .success(let response):
+                            self.status.text = "Logged in and assigned JWT \(response.token)"
+                            
+                            self.authenticate(response.token)
+                            
+                        case .failure(let error):
+                            switch error {
+                            case .unauthorized:
+                                self.status.text = "Invalid email/password, or account hasn't been created"
+                                
+                            case .unknown: // TODO: better error handling system
+                                self.status.text = "Email already in use"
+                            default:
+                                self.status.text = "An error occured: \(error)"
+                            }
+                        }
                     }
                 }
+                
             }
         }
+        else {
+            let usernameAlert = UIAlertController(title: "No Username", message: "Please enter a username", preferredStyle: .alert)
+            
+            self.present(usernameAlert, animated: true, completion: nil)
+        }
+        
     }
     
     @IBAction func signInWithGoogle(_ sender: UIButton) {
