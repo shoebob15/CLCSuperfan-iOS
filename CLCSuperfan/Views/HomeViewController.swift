@@ -30,7 +30,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         configureRefreshControl()
         
-        // TODO: save refresh token to keychain
         if !AuthManager.authenticated {
             performSegue(withIdentifier: "authSegue", sender: self)
         } else {
@@ -125,7 +124,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func signOut(_ sender: UIButton) {
-        AuthManager.token = nil
+        AuthManager.signOut()
         isAdmin = false
         refresh()
     }
