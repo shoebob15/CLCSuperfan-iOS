@@ -42,7 +42,15 @@ class RegisterViewController: UIViewController {
                 switch result {
                 case .success:
                     self.status.text = "Successfully registered!"
-                    self.dismiss(animated: true)
+                    
+                    //Alert
+                    let alert = UIAlertController(title: "Success!", message: "Successfully registered for CLC Superfan. You will now be returned to the sign in screen.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default) { (action) in
+                        
+                        self.dismiss(animated: true)
+                        
+                    })
+                    self.present(alert, animated: true, completion: nil)
                     
                 case .failure(let error):
                     self.status.text = "An error occured: \(error)"

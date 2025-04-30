@@ -30,7 +30,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dm7-uW-0ka">
                                         <rect key="frame" x="0.0" y="64.666666666666657" width="285" height="55.666666666666657"/>
                                         <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ZG-Ge-ym2">
                                         <rect key="frame" x="0.0" y="129.33333333333331" width="285" height="55.666666666666657"/>
@@ -93,7 +93,6 @@
                     <navigationItem key="navigationItem" id="b0V-2I-fX8"/>
                     <connections>
                         <outlet property="firstName" destination="0ZG-Ge-ym2" id="ERk-JO-KvY"/>
-                        <outlet property="firstNameField" destination="0ZG-Ge-ym2" id="uIe-aM-TqL"/>
                         <outlet property="lastName" destination="nkd-xb-2VQ" id="3C7-b1-nmf"/>
                         <outlet property="password" destination="dm7-uW-0ka" id="Sk8-RG-PVa"/>
                         <outlet property="status" destination="yDF-Xa-1YN" id="rGB-Yt-Hnp"/>

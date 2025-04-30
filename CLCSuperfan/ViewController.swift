@@ -13,8 +13,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var username: UITextField! // should be email, mistyped
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var status: UILabel!
-    @IBOutlet weak var firstName: UITextField!
-    @IBOutlet weak var lastName: UITextField!
     
     var vc: HomeViewController! = nil
     
@@ -51,9 +49,7 @@ class ViewController: UIViewController {
     @IBAction func resignKeyboard(_ sender: UIButton) {
         username.resignFirstResponder()
         password.resignFirstResponder()
-        // TODO
-        //        firstName.resignFirstResponder()
-        //        lastName.resignFirstResponder()
+
     }
     
     @IBAction func signIn(_ sender: UIButton) {
