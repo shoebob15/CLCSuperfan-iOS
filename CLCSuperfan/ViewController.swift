@@ -113,19 +113,6 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func register(_ sender: UIButton) {
-        NetworkManager.shared.request(api: AuthAPI.register(firstName: firstName.text!, lastName: lastName.text!, email: username.text!, password: password.text!)) { (result: Result<RegistrationResponse, NetworkError>) in
-            DispatchQueue.main.async {
-                switch result {
-                case .success:
-                    self.status.text = "Successfully registered!"
-                    
-                case .failure(let error):
-                    self.status.text = "An error occured: \(error)"
-                }
-            }
-        }
-    }
     
     // will configure app state with token and
     // segues to main view
