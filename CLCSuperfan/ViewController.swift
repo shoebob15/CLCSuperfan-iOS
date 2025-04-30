@@ -7,6 +7,7 @@
 
 import UIKit
 import GoogleSignIn
+import KeychainSwift
 
 class ViewController: UIViewController {
     @IBOutlet weak var username: UITextField! // should be email, mistyped
@@ -21,12 +22,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         // password and functionality from stack overflow
+        // view/hide password button
         let passwordButton = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
         passwordButton.setImage(UIImage(systemName: "eye"), for: .normal)
         passwordButton.setTitleColor(UIColor.label, for: .normal)
         password.rightViewMode = UITextField.ViewMode.always
         password.rightView = passwordButton
         passwordButton.addTarget(self, action: #selector(passwordAction), for: .touchUpInside)
+        
+        
         
         super.viewDidLoad()
     }
@@ -47,8 +51,9 @@ class ViewController: UIViewController {
     @IBAction func resignKeyboard(_ sender: UIButton) {
         username.resignFirstResponder()
         password.resignFirstResponder()
-        firstName.resignFirstResponder()
-        lastName.resignFirstResponder()
+        // TODO
+        //        firstName.resignFirstResponder()
+        //        lastName.resignFirstResponder()
     }
     
     @IBAction func signIn(_ sender: UIButton) {
@@ -73,12 +78,13 @@ class ViewController: UIViewController {
                                 self.status.text = "An error occured: \(error)"
                             }
                         }
+                        
+                        
+                        
                     }
                 }
-                
             }
-        }
-        else {
+        }                         else {
             let usernameAlert = UIAlertController(title: "No Username", message: "Please enter a username", preferredStyle: .alert)
             
             self.present(usernameAlert, animated: true, completion: nil)
@@ -138,4 +144,3 @@ class ViewController: UIViewController {
         self.dismiss(animated: true)
     }
 }
-
