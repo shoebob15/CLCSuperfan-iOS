@@ -769,6 +769,12 @@
                                         <rect key="frame" x="0.0" y="90.999999999999972" width="353" height="334.33333333333326"/>
                                         <standardMapConfiguration key="preferredConfiguration"/>
                                     </mapView>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K09-l7-TR2">
+                                        <rect key="frame" x="0.0" y="430.33333333333337" width="353" height="0.0"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LnN-Za-bsH">
                                         <rect key="frame" x="0.0" y="435.33333333333343" width="353" height="186.66666666666669"/>
                                         <state key="normal" title="Button"/>
@@ -800,6 +806,8 @@
                     <navigationItem key="navigationItem" id="IBq-wS-7mo"/>
                     <connections>
                         <outlet property="map" destination="ksd-ig-YTV" id="CqK-UI-dex"/>
+                        <outlet property="redeemButton" destination="LnN-Za-bsH" id="7Xz-Tg-2SM"/>
+                        <outlet property="scanLabel" destination="K09-l7-TR2" id="VmD-bt-JOQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cm3-kx-Yjn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -850,10 +858,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
