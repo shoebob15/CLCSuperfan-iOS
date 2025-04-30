@@ -17,6 +17,8 @@ class EventRedeemViewController: UIViewController, CLLocationManagerDelegate, MK
     @IBOutlet weak var redeemButton: UIButton!
     
     @IBOutlet weak var scanLabel: UILabel!
+
+    private var canRedeem = true
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -37,7 +39,10 @@ class EventRedeemViewController: UIViewController, CLLocationManagerDelegate, MK
                 redeemButton.tintColor = .systemGray
             scanLabel.text = "Next scan in \(60 + (AppData.mostRecentScan!.timeIntervalSinceNow / 60.0).rounded(.down))mins \(60 + AppData.mostRecentScan!.timeIntervalSinceNow.truncatingRemainder(dividingBy: 60).rounded(.down))secs"
                 scanLabel.isHidden = false
+
+            canRedeem = false
         } else {
+            canRedeem = true
             scanLabel.isHidden = true
             redeemButton.tintColor = .systemOrange
         }
@@ -62,7 +67,7 @@ class EventRedeemViewController: UIViewController, CLLocationManagerDelegate, MK
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "scanSegue" && redeemButton.tintColor == .systemOrange {
+        if segue.identifier == "scanSegue" && canRedeem {
             let vc = segue.destination as! ScannerViewController
             
             vc.event = event
