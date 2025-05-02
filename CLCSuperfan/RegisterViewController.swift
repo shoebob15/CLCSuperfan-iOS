@@ -20,11 +20,30 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var status: UILabel!
     
     override func viewDidLoad() {
+        let passwordButton = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        passwordButton.setImage(UIImage(systemName: "eye"), for: .normal)
+        passwordButton.setTitleColor(UIColor.label, for: .normal)
+        password.rightViewMode = UITextField.ViewMode.always
+        password.rightView = passwordButton
+        passwordButton.addTarget(self, action: #selector(passwordAction), for: .touchUpInside)
+        
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
+    @objc func passwordAction(sender: UIButton!) {
+        if password.isSecureTextEntry {
+            sender.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+            
+            password.isSecureTextEntry = false
+        }
+        else {
+            sender.setImage(UIImage(systemName: "eye"), for: .normal)
+            
+            password.isSecureTextEntry = true
+        }
+    }
     
     @IBAction func resignKeyboardButton(_ sender: UIButton) {
         
