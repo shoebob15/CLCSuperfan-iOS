@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     var isAdmin = false
     
     override func viewDidLoad() {
+        let _ = AppData() // setup several fields in appdata
         // password and functionality from stack overflow
         // view/hide password button
         let passwordButton = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
@@ -53,9 +54,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func signIn(_ sender: UIButton) {
-        if let username = username.text {
-            if let password = password.text {
-                NetworkManager.shared.request(api: AuthAPI.login(email: username, password: password)) { (result: Result<LoginResponse, NetworkError>) in
+        if username.text != "" {
+            if password.text != "" {
+                NetworkManager.shared.request(api: AuthAPI.login(email: username.text ?? "", password: password.text ?? "")) { (result: Result<LoginResponse, NetworkError>) in
                     DispatchQueue.main.async {
                         switch result {
                         case .success(let response):
@@ -79,11 +80,11 @@ class ViewController: UIViewController {
                         
                     }
                 }
+            } else {
+                self.present(AppData.passwordAlert, animated: true, completion: nil)
             }
         }                         else {
-            let usernameAlert = UIAlertController(title: "No Username", message: "Please enter a username", preferredStyle: .alert)
-            
-            self.present(usernameAlert, animated: true, completion: nil)
+            self.present(AppData.usernameAlert, animated: true, completion: nil)
         }
         
     }

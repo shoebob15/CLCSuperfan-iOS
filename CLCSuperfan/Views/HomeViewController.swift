@@ -9,10 +9,23 @@ import UIKit
 
 class AppData {
     static var mostRecentScan: Date?
+    
+    static let usernameAlert = UIAlertController(title: "Username Error", message: "Please enter a username", preferredStyle: .alert)
+    static let passwordAlert = UIAlertController(title: "Password Error", message: "Please enter a password", preferredStyle: .alert)
+    static let firstNameAlert = UIAlertController(title: "First Name Error", message: "Please enter a first name", preferredStyle: .alert)
+    static let lastNameAlert = UIAlertController(title: "Last Name Error", message: "Please enter a last name", preferredStyle: .alert)
+    
+    init() {
+        AppData.usernameAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        AppData.passwordAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        AppData.firstNameAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        AppData.lastNameAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+    }
 }
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var eventTable: UITableView!
+    
     
     @IBOutlet weak var greeting: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
