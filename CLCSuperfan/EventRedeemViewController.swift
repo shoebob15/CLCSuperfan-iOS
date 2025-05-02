@@ -66,8 +66,14 @@ class EventRedeemViewController: UIViewController, CLLocationManagerDelegate, MK
         return renderer
     }
     
+    @IBAction func redeemAction(_ sender: UIButton) {
+        if canRedeem {
+            performSegue(withIdentifier: "scanSegue", sender: self)
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "scanSegue" && canRedeem {
+        if segue.identifier == "scanSegue" {
             let vc = segue.destination as! ScannerViewController
             
             vc.event = event
