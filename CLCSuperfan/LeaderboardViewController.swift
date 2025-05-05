@@ -24,6 +24,10 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Leaderboard"
+        
+        
+        
         NetworkManager.shared.request(api: UserAPI.leaderboard) { (result: Result<[User], NetworkError>) in
             switch result {
             case .success(let users):
@@ -54,6 +58,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
         var blah = "\(topTen[indexPath.row].points)"
         cell.lab1?.text = "\(blat)"
         cell.lab2?.text = "\(blah)"
+        cell.Lab3?.text = "\(indexPath.row + 1)."
         
         return cell
     }
