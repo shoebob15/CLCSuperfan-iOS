@@ -19,6 +19,10 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var addButton: UIButton!
     
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var startTimePicker: UIDatePicker!
+    @IBOutlet weak var stopTimePicker: UIDatePicker!
+    
     // MARK: - variables
     private var events = [Event]()
     
