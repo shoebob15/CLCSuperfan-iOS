@@ -14,4 +14,6 @@ struct Event: Codable {
     let code: String
     let lat: Double
     let lon: Double
+    let startTime: Int
+    let stopTime: Int
 }

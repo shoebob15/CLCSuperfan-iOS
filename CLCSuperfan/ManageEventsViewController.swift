@@ -136,6 +136,10 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
     // MARK: - actions
     // add/edit event action
     @IBAction func addEvent(_ sender: UIButton) {
+        let day = Int(datePicker.date.timeIntervalSince1970)
+        let start = Int(startTimePicker.date.timeIntervalSince1970)
+        let stop = Int(stopTimePicker.date.timeIntervalSince1970)
+        
         // edit mode
         if let event = selectedEvent, let index = selectedIndex {
             let newEvent = Event(
@@ -143,7 +147,9 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
                 name: eventTitle.text!,
                 code: eventCode.text!,
                 lat: selectedCoordinate.latitude,
-                lon: selectedCoordinate.longitude
+                lon: selectedCoordinate.longitude,
+                startTime: ,
+                stopTime: Int(
             )
             
             // reset vc after editing
