@@ -16,4 +16,6 @@ struct User: Codable {
     let authProvider: String? // "APPLE" or "GOOGLE"
     let oauthIdentity: String? // nullable
     let points: String
+    
+    
 }
