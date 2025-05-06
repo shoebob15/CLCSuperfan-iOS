@@ -16,7 +16,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
     @IBOutlet weak var tableView: UITableView!
     
 
-    var topTen = [User]()
+    var topTen = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
         
         
         
-        NetworkManager.shared.request(api: UserAPI.leaderboard) { (result: Result<[User], NetworkError>) in
+        NetworkManager.shared.request(api: UserAPI.leaderboard) { (result: Result<[String], NetworkError>) in
             switch result {
             case .success(let users):
                 DispatchQueue.main.async{
