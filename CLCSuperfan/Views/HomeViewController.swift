@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class AppData {
     static var mostRecentScan: Date?
@@ -33,7 +34,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var selectedEvent: Event! = nil
     
     var isAdmin = false
-    
+    var player: AVAudioPlayer?
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -84,6 +86,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.events = events
                 debugPrint(events)
                 
+              //  self.sortEventsAlphabetically()
+                
                 DispatchQueue.main.async {
                     self.eventTable.reloadData()
                 }
@@ -129,6 +133,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     self.greeting.text = "Welcome back, \(result.firstName)"
                     self.pointsLabel.text = "Points: \(result.points)"
                     self.eventTable.refreshControl?.endRefreshing()
+                    
                 }
             case .failure:
                 print("couldn't fetch user data")
@@ -141,4 +146,41 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         isAdmin = false
         refresh()
     }
+    
+    private func sortEventsAlphabetically() {
+        events.sort { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
+       // eventTable.reloadData()
+    }
+   
+    func playSound() {
+        if let player = player, player.isPlaying{
+            
+        }
+        else{
+            let urlString = Bundle.main.path(forResource: "tv off", ofType: "mp3")
+            do {
+                try AVAudioSession.sharedInstance().setMode(.default)
+                try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
+                
+                guard let urlString = urlString else {
+                    return
+                }
+                player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: urlString))
+                
+                guard let player = player else {
+                    return
+                }
+                player.play()
+            }
+            catch{
+                print("error")
+            }
+        }
+        
+    }
+
+    @IBAction func soundButton(_ sender: UIButton) {
+        playSound()
+    }
+    
 }

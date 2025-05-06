@@ -249,6 +249,10 @@
                             <constraint firstItem="Mcx-vi-XiA" firstAttribute="trailing" secondItem="KeA-c4-5Ei" secondAttribute="trailing" id="yDq-Kc-woj"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="wv6-Jb-SCp"/>
+                    <connections>
+                        <outlet property="tableView" destination="KeA-c4-5Ei" id="miB-Fb-GBC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ZN-FG-Uwc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -780,6 +784,15 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SYj-xa-eUN">
+                                <rect key="frame" x="159" y="776" width="75" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="soundButton:" destination="rIk-CL-KzG" eventType="touchUpInside" id="tKY-Ww-uAg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RXb-2f-eg6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
