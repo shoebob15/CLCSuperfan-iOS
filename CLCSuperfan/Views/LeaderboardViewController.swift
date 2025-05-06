@@ -17,9 +17,6 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
     
 
     var topTen = [User]()
-    var username = ""
-    var point = ""
-    var lastInitial = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,13 +28,15 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
         NetworkManager.shared.request(api: UserAPI.leaderboard) { (result: Result<[User], NetworkError>) in
             switch result {
             case .success(let users):
-                self.topTen = users
-                self.tableView.reloadData()
+                DispatchQueue.main.async{
+                    self.topTen = users
+                    self.tableView.reloadData()
+                }
             case .failure:
                 print("couldn't fetch user data")
             }
         }
-        
+        debugPrint(topTen)
         
     }
     
@@ -55,7 +54,7 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
             tempLast = "\(firstLetterString)"
         }
         var blat = "\(topTen[indexPath.row].firstName)  \(tempLast)"
-        var blah = "\(topTen[indexPath.row].points)"
+        let blah = "\(topTen[indexPath.row].points)"
         cell.lab1?.text = "\(blat)"
         cell.lab2?.text = "\(blah)"
         cell.Lab3?.text = "\(indexPath.row + 1)."

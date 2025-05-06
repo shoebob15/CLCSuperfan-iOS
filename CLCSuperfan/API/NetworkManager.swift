@@ -73,7 +73,8 @@ class NetworkManager {
                     completion(.success(EmptyResponse() as! T))
                     return
                 }
-                
+                print("Raw JSON response: \(String(data: data, encoding: .utf8) ?? "N/A")")
+
                 // decode response from server (handles completion)
                 self.decodeResponse(data: data, completion: completion)
                 
