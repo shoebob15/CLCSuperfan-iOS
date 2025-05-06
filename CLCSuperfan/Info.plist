@@ -2,13 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
-	<key>NSCameraUsageDescription</key>
-	<string>camera please</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -22,6 +15,11 @@
 	<string>197962261669-hfqpk3r378bqhs981t597u86778p4oct.apps.googleusercontent.com</string>
 	<key>GIDServerClientID</key>
 	<string>197962261669-0rppq62buf24kg6icdtapcigtdbc44ok.apps.googleusercontent.com</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

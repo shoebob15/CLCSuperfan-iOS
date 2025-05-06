@@ -140,6 +140,8 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
         let start = Int(startTimePicker.date.timeIntervalSince1970)
         let stop = Int(stopTimePicker.date.timeIntervalSince1970)
         
+        
+        
         // edit mode
         if let event = selectedEvent, let index = selectedIndex {
             let newEvent = Event(
@@ -148,8 +150,8 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
                 code: eventCode.text!,
                 lat: selectedCoordinate.latitude,
                 lon: selectedCoordinate.longitude,
-                startTime: ,
-                stopTime: Int(
+                startTime: 0 ,
+                stopTime: Int(0)
             )
             
             // reset vc after editing
@@ -174,7 +176,7 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
         } else {
             // create mode
             // disregard the client-generated uuid, since server manages ids
-            let newEvent = Event(id: UUID(), name: eventTitle.text!, code: eventCode.text!, lat: selectedCoordinate.latitude, lon: selectedCoordinate.longitude)
+            let newEvent = Event(id: UUID(), name: eventTitle.text!, code: eventCode.text!, lat: selectedCoordinate.latitude, lon: selectedCoordinate.longitude, startTime: 0, stopTime: 0)
             
             NetworkManager.shared.request(api: EventAPI.createEvent(event: newEvent)) { (result: Result<Event, NetworkError>) in
                 switch result {
