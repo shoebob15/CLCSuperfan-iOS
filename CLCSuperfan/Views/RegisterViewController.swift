@@ -59,27 +59,30 @@ class RegisterViewController: UIViewController {
             if password.text != "" {
                 if firstName.text != "" {
                     if lastName.text != "" {
-                        NetworkManager.shared.request(api: AuthAPI.register(firstName: firstName.text!, lastName: lastName.text!, email: username.text!, password: password.text!)) { (result: Result<RegistrationResponse, NetworkError>) in
-                            DispatchQueue.main.async {
-                                switch result {
-                                case .success:
-                                    self.status.text = "Successfully registered!"
-                                    
-                                    //Alert
-                                    let alert = UIAlertController(title: "Success!", message: "Successfully registered for CLC Superfan. You will now be returned to the sign in screen.", preferredStyle: .alert)
-                                    alert.addAction(UIAlertAction(title: "Ok", style: .default) { (action) in
+                        if isValidEmail(username.text!) {
+                            NetworkManager.shared.request(api: AuthAPI.register(firstName: firstName.text!, lastName: lastName.text!, email: username.text!, password: password.text!)) { (result: Result<RegistrationResponse, NetworkError>) in
+                                DispatchQueue.main.async {
+                                    switch result {
+                                    case .success:
+                                        self.status.text = "Successfully registered!"
                                         
-                                        self.dismiss(animated: true)
+                                        //Alert
+                                        let alert = UIAlertController(title: "Success!", message: "Successfully registered for CLC Superfan. You will now be returned to the sign in screen.", preferredStyle: .alert)
+                                        alert.addAction(UIAlertAction(title: "Ok", style: .default) { (action) in
+                                            
+                                            self.dismiss(animated: true)
+                                            
+                                        })
+                                        self.present(alert, animated: true, completion: nil)
                                         
-                                    })
-                                    self.present(alert, animated: true, completion: nil)
-                                    
-                                case .failure(let error):
-                                    self.status.text = "An error occured: \(error)"
+                                    case .failure(let error):
+                                        self.status.text = "An error occured: \(error)"
+                                    }
                                 }
                             }
+                        } else {
+                            self.present(AppData.usernameAlert, animated: true, completion: nil)
                         }
-                        
                     } else {
                         self.present(AppData.lastNameAlert, animated: true, completion: nil)
                     }
@@ -102,4 +105,11 @@ class RegisterViewController: UIViewController {
         
     }
 
+    func isValidEmail(_ email: String) -> Bool {
+        let emailRegEx = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}$"
+
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: email)
+    }
+    
 }
