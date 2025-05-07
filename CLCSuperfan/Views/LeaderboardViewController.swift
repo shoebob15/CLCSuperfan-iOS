@@ -21,6 +21,9 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        
         self.title = "Leaderboard"
         
         
@@ -36,8 +39,6 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
                 print("couldn't fetch user data")
             }
         }
-        debugPrint(topTen)
-        
     }
     
     
@@ -46,19 +47,9 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell") as! LeaderboardCell2
-        var tempLast = topTen[indexPath.row].lastName
-        if let firstLetter = tempLast.first {
-            let firstLetterString = String(firstLetter)
-            print(firstLetterString)
-            tempLast = "\(firstLetterString)"
-        }
-        var blat = "\(topTen[indexPath.row].firstName)  \(tempLast)"
-        let blah = "\(topTen[indexPath.row].points)"
-        cell.lab1?.text = "\(blat)"
-        cell.lab2?.text = "\(blah)"
-        cell.Lab3?.text = "\(indexPath.row + 1)."
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell")!
+        cell.textLabel!.text = topTen[indexPath.row]
+                
         return cell
     }
 
