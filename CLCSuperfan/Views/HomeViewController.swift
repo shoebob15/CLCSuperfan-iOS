@@ -9,6 +9,9 @@ import UIKit
 import AVFoundation
 
 class AppData {
+    // jank
+    private static var inited = false
+    
     static var mostRecentScan: Date?
     
     static let usernameAlert = UIAlertController(title: "Username Error", message: "Please enter a username", preferredStyle: .alert)
@@ -17,10 +20,13 @@ class AppData {
     static let lastNameAlert = UIAlertController(title: "Last Name Error", message: "Please enter a last name", preferredStyle: .alert)
     
     init() {
-        AppData.usernameAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        AppData.passwordAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        AppData.firstNameAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        AppData.lastNameAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        if !AppData.inited {
+            AppData.usernameAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            AppData.passwordAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            AppData.firstNameAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            AppData.lastNameAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        }
+        AppData.inited = true
     }
 }
 

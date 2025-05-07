@@ -196,7 +196,13 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
 
     }
     
-    
+    func combineDates(_ d1: Date, _ d2: Date) -> Date {
+        let d1Comp = Calendar.current.dateComponents(in: .current, from: d1)
+        
+        let d2Comp = Calendar.current.dateComponents(in: .current, from: d2)
+        
+        return Date.now
+    }
     
     
     // MARK: - delegate funcs
