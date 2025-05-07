@@ -27,10 +27,6 @@ class AppData {
             AppData.lastNameAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         }
         AppData.inited = true
-        AppData.emailAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        AppData.passwordAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        AppData.firstNameAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        AppData.lastNameAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
     }
 }
 
