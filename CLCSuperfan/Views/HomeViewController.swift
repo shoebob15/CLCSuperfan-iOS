@@ -42,7 +42,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var pointsLabel: UILabel!
     var events = [Event]()
     var selectedEvent: Event! = nil
-    
+    var playbackPosition: TimeInterval = 125
     var isAdmin = false
     var player: AVAudioPlayer?
 
@@ -180,7 +180,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 guard let player = player else {
                     return
                 }
+<<<<<<< Updated upstream
                 player.currentTime = 125.0
+=======
+                player.currentTime = playbackPosition
+>>>>>>> Stashed changes
                 player.play()
             }
             catch{
