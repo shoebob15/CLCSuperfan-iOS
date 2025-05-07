@@ -160,7 +160,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
    
     func playSound() {
         if let player = player, player.isPlaying{
-            
+            player.currentTime = 125.0
         }
         else{
             let urlString = Bundle.main.path(forResource: "tv off", ofType: "mp3")
