@@ -47,9 +47,9 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myCell") as! LeaderboardCell2
         var place = indexPath.row + 1
-        cell.textLabel!.text = "\(place). \(topTen[indexPath.row])"
+        cell.lab1!.text = "\(place). \(topTen[indexPath.row])"
                 
         return cell
     }

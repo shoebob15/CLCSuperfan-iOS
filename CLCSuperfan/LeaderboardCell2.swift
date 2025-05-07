@@ -12,10 +12,6 @@ class LeaderboardCell2: UITableViewCell{
     
     @IBOutlet weak var lab1: UILabel!
     
-    @IBOutlet weak var lab2: UILabel!
-    
-    
-    
-    @IBOutlet weak var Lab3: UILabel!
+    @IBOutlet weak var imageViewOutlet: UIImageView!
     
 }
