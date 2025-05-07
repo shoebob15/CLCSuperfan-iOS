@@ -275,7 +275,10 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
         return [deleteAction]
     }
     
-    
+    @IBAction func tapRecognized(_ sender: UITapGestureRecognizer) {
+        eventTitle.resignFirstResponder()
+        eventCode.resignFirstResponder()
+    }
     
 }
 // quick extension to convert cllocationcoordinate2d to cllocation

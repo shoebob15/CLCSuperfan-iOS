@@ -9,7 +9,7 @@ import UIKit
 
 class RegisterViewController: UIViewController {
 
-    @IBOutlet weak var username: UITextField!
+    @IBOutlet weak var email: UITextField!
     
     @IBOutlet weak var password: UITextField!
     
@@ -47,7 +47,7 @@ class RegisterViewController: UIViewController {
     
     @IBAction func resignKeyboardButton(_ sender: UIButton) {
         
-        username.resignFirstResponder()
+        email.resignFirstResponder()
         password.resignFirstResponder()
         firstName.resignFirstResponder()
         lastName.resignFirstResponder()
@@ -55,12 +55,12 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func registerAction(_ sender: Any) {
-        if username.text != "" {
+        if email.text != "" {
             if password.text != "" {
                 if firstName.text != "" {
                     if lastName.text != "" {
-                        if isValidEmail(username.text!) {
-                            NetworkManager.shared.request(api: AuthAPI.register(firstName: firstName.text!, lastName: lastName.text!, email: username.text!, password: password.text!)) { (result: Result<RegistrationResponse, NetworkError>) in
+                        if isValidEmail(email.text!) {
+                            NetworkManager.shared.request(api: AuthAPI.register(firstName: firstName.text!, lastName: lastName.text!, email: email.text!, password: password.text!)) { (result: Result<RegistrationResponse, NetworkError>) in
                                 DispatchQueue.main.async {
                                     switch result {
                                     case .success:
@@ -81,7 +81,7 @@ class RegisterViewController: UIViewController {
                                 }
                             }
                         } else {
-                            self.present(AppData.usernameAlert, animated: true, completion: nil)
+                            self.present(AppData.emailAlert, animated: true, completion: nil)
                         }
                     } else {
                         self.present(AppData.lastNameAlert, animated: true, completion: nil)
@@ -93,7 +93,7 @@ class RegisterViewController: UIViewController {
                 self.present(AppData.passwordAlert, animated: true, completion: nil)
             }
         } else {
-            self.present(AppData.usernameAlert, animated: true, completion: nil)
+            self.present(AppData.emailAlert, animated: true, completion: nil)
         }
         
         
@@ -107,7 +107,6 @@ class RegisterViewController: UIViewController {
 
     func isValidEmail(_ email: String) -> Bool {
         let emailRegEx = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}$"
-
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
     }

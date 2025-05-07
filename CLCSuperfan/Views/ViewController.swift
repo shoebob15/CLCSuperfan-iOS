@@ -10,7 +10,7 @@ import GoogleSignIn
 import KeychainSwift
 
 class ViewController: UIViewController {
-    @IBOutlet weak var username: UITextField! // should be email, mistyped
+    @IBOutlet weak var email: UITextField! // should be email, mistyped
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var status: UILabel!
     
@@ -48,15 +48,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func resignKeyboard(_ sender: UIButton) {
-        username.resignFirstResponder()
+        email.resignFirstResponder()
         password.resignFirstResponder()
 
     }
     
     @IBAction func signIn(_ sender: UIButton) {
-        if username.text != "" {
+        if email.text != "" {
             if password.text != "" {
-                NetworkManager.shared.request(api: AuthAPI.login(email: username.text ?? "", password: password.text ?? "")) { (result: Result<LoginResponse, NetworkError>) in
+                NetworkManager.shared.request(api: AuthAPI.login(email: email.text ?? "", password: password.text ?? "")) { (result: Result<LoginResponse, NetworkError>) in
                     DispatchQueue.main.async {
                         switch result {
                         case .success(let response):
@@ -84,7 +84,7 @@ class ViewController: UIViewController {
                 self.present(AppData.passwordAlert, animated: true, completion: nil)
             }
         }                         else {
-            self.present(AppData.usernameAlert, animated: true, completion: nil)
+            self.present(AppData.emailAlert, animated: true, completion: nil)
         }
         
     }

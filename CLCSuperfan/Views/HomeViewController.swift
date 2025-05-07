@@ -14,19 +14,23 @@ class AppData {
     
     static var mostRecentScan: Date?
     
-    static let usernameAlert = UIAlertController(title: "Username Error", message: "Please enter a username", preferredStyle: .alert)
+    static let emailAlert = UIAlertController(title: "Email Error", message: "Please enter a valid email", preferredStyle: .alert)
     static let passwordAlert = UIAlertController(title: "Password Error", message: "Please enter a password", preferredStyle: .alert)
     static let firstNameAlert = UIAlertController(title: "First Name Error", message: "Please enter a first name", preferredStyle: .alert)
     static let lastNameAlert = UIAlertController(title: "Last Name Error", message: "Please enter a last name", preferredStyle: .alert)
     
     init() {
         if !AppData.inited {
-            AppData.usernameAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            AppData.emailAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             AppData.passwordAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             AppData.firstNameAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             AppData.lastNameAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         }
         AppData.inited = true
+        AppData.emailAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        AppData.passwordAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        AppData.firstNameAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        AppData.lastNameAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
     }
 }
 
@@ -160,7 +164,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
    
     func playSound() {
         if let player = player, player.isPlaying{
-            
+            player.currentTime = 125.0
         }
         else{
             let urlString = Bundle.main.path(forResource: "tv off", ofType: "mp3")
@@ -176,6 +180,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 guard let player = player else {
                     return
                 }
+                player.currentTime = 125.0
                 player.play()
             }
             catch{

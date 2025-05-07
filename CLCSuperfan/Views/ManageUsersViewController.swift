@@ -139,6 +139,11 @@ class ManageUsersViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
-    
+    @IBAction func tapRecognized(_ sender: UITapGestureRecognizer) {
+        firstName.resignFirstResponder()
+        lastName.resignFirstResponder()
+        email.resignFirstResponder()
+        password.resignFirstResponder()
+    }
     
 }
