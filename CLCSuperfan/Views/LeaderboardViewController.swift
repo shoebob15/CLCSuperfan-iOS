@@ -12,7 +12,6 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
     
     
     
-    
     @IBOutlet weak var tableView: UITableView!
     
 
@@ -49,7 +48,23 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myCell") as! LeaderboardCell2
         var place = indexPath.row + 1
-        cell.lab1!.text = "\(place). \(topTen[indexPath.row])"
+        cell.lab1.text = "      \(place). \(topTen[indexPath.row])"
+        
+        if indexPath.row == 0{
+            
+            cell.imageView?.image = UIImage(named: "1")
+            
+        }
+        else if indexPath.row == 1{
+            
+            cell.imageView?.image = UIImage(named: "second")
+            
+        }
+        else if indexPath.row == 2{
+            
+            cell.imageView?.image = UIImage(named: "third")
+            
+        }
                 
         return cell
     }
