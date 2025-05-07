@@ -76,6 +76,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = eventTable.dequeueReusableCell(withIdentifier: "eventCell")!
         
         cell.textLabel!.text = events[indexPath.row].name
+        cell.detailTextLabel!.text = events[indexPath.row].timeRange
         
         return cell
     }
@@ -176,11 +177,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 guard let player = player else {
                     return
                 }
-<<<<<<< Updated upstream
-                player.currentTime = 125.0
-=======
                 player.currentTime = playbackPosition
->>>>>>> Stashed changes
                 player.play()
             }
             catch{

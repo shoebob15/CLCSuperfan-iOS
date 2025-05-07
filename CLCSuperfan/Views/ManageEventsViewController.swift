@@ -23,6 +23,7 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var startTimePicker: UIDatePicker!
     @IBOutlet weak var stopTimePicker: UIDatePicker!
     
+    @IBOutlet var gestureRecognizer: UITapGestureRecognizer!
     // MARK: - variables
     private var events = [Event]()
     
@@ -37,9 +38,14 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // make sure tapgesturerecognizer doesn't cancel taps in table
+        gestureRecognizer.cancelsTouchesInView = false
+        
         // set table delegates
         eventTable.delegate = self
         eventTable.dataSource = self
+        
+        
         
         // configure refresh control for table
         let refreshControl = UIRefreshControl()
@@ -117,11 +123,14 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
             animated: true)
     }
     
-    // resets mapview and textfields
+    // resets mapview, textfields, and date stuff
     func resetFields() {
-        self.eventTitle.text = ""
-        self.eventCode.text = ""
-        self.selectedCoordinate = CLLocationCoordinate2D(latitude: 42.23708, longitude: -88.32256)
+        eventTitle.text = ""
+        eventCode.text = ""
+        selectedCoordinate = CLLocationCoordinate2D(latitude: 42.23708, longitude: -88.32256)
+        datePicker.date = Date.now
+        startTimePicker.date = Date.now
+        stopTimePicker.date = Date.now
     }
     
     // handles tap gesture on map
@@ -136,9 +145,15 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
     // MARK: - actions
     // add/edit event action
     @IBAction func addEvent(_ sender: UIButton) {
-        let day = Int(datePicker.date.timeIntervalSince1970)
-        let start = Int(startTimePicker.date.timeIntervalSince1970)
-        let stop = Int(stopTimePicker.date.timeIntervalSince1970)
+        let day = datePicker.date
+        let start = startTimePicker.date
+        let stop = stopTimePicker.date
+        
+        let combinedStart = combineDates(day, start)
+        let combinedStop = combineDates(day, stop)
+        
+        debugPrint("start: \(combinedStart)")
+        debugPrint("stop: \(combinedStop)")
         
         
         
@@ -150,8 +165,8 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
                 code: eventCode.text!,
                 lat: selectedCoordinate.latitude,
                 lon: selectedCoordinate.longitude,
-                startTime: 0 ,
-                stopTime: Int(0)
+                startTime: Int(combinedStart.timeIntervalSince1970),
+                stopTime: Int(combinedStop.timeIntervalSince1970)
             )
             
             // reset vc after editing
@@ -160,7 +175,7 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
             resetFields()
             self.selectedEvent = nil
             self.selectedIndex = nil
-
+            
             NetworkManager.shared.request(api: EventAPI.updateEvent(id: event.id.uuidString, event: newEvent)) { (result: Result<Event, NetworkError>) in
                 switch result {
                 case .success:
@@ -176,7 +191,8 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
         } else {
             // create mode
             // disregard the client-generated uuid, since server manages ids
-            let newEvent = Event(id: UUID(), name: eventTitle.text!, code: eventCode.text!, lat: selectedCoordinate.latitude, lon: selectedCoordinate.longitude, startTime: 0, stopTime: 0)
+            let newEvent = Event(id: UUID(), name: eventTitle.text!, code: eventCode.text!, lat: selectedCoordinate.latitude, lon: selectedCoordinate.longitude, startTime: Int(combinedStart.timeIntervalSince1970),
+                                 stopTime: Int(combinedStop.timeIntervalSince1970))
             
             NetworkManager.shared.request(api: EventAPI.createEvent(event: newEvent)) { (result: Result<Event, NetworkError>) in
                 switch result {
@@ -193,16 +209,28 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
             
         }
         
-
+        
     }
     
+    // makes a new date with the ymd of d1 and the hms of d2
     func combineDates(_ d1: Date, _ d2: Date) -> Date {
-        let d1Comp = Calendar.current.dateComponents(in: .current, from: d1)
+        let calendar = Calendar.current
         
-        let d2Comp = Calendar.current.dateComponents(in: .current, from: d2)
+        let d1Comp = calendar.dateComponents([.year, .month, .day], from: d1)
+        let d2Comp = calendar.dateComponents([.hour, .minute, .second, .nanosecond], from: d2)
         
-        return Date.now
+        var combined = DateComponents()
+        combined.year = d1Comp.year
+        combined.month = d1Comp.month
+        combined.day = d1Comp.day
+        combined.hour = d2Comp.hour
+        combined.minute = d2Comp.minute
+        combined.second = d2Comp.second
+        combined.nanosecond = d2Comp.nanosecond
+        
+        return calendar.date(from: combined)!
     }
+    
     
     
     // MARK: - delegate funcs
@@ -215,18 +243,13 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
         
         let cell = eventTable.dequeueReusableCell(withIdentifier: "eventCell")!
         cell.textLabel!.text = event.name
-        cell.detailTextLabel!.text = "Loading..."
-        
-        coordinateToName(CLLocationCoordinate2D(latitude: event.lat, longitude: event.lon)) { name in
-            DispatchQueue.main.async {
-                cell.detailTextLabel?.text = name
-            }
-        }
+        cell.detailTextLabel!.text = event.timeRange
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("selected")
         // set vc variables for selected row
         let event = events[indexPath.row]
         
@@ -237,6 +260,11 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
         // set text fields and map to be the selected row
         eventTitle.text = event.name
         eventCode.text = event.code
+        
+        // set date pickers
+        datePicker.date = Date(timeIntervalSince1970: TimeInterval(event.startTime))
+        startTimePicker.date = Date(timeIntervalSince1970: TimeInterval(event.startTime))
+        stopTimePicker.date = Date(timeIntervalSince1970: TimeInterval(event.stopTime))
         
         selectedCoordinate = CLLocationCoordinate2D(latitude: event.lat, longitude: event.lon)
         refreshMapView()
@@ -269,7 +297,7 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
                 self.addButton.titleLabel!.text = "Add"
             }
             
-
+            
         }
         
         return [deleteAction]
@@ -281,6 +309,7 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
     }
     
 }
+
 // quick extension to convert cllocationcoordinate2d to cllocation
 extension CLLocationCoordinate2D {
     func toCLLocation() -> CLLocation {

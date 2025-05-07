@@ -18,6 +18,7 @@ class EventRedeemViewController: UIViewController, CLLocationManagerDelegate, MK
     
     @IBOutlet weak var scanLabel: UILabel!
 
+    @IBOutlet weak var titleLabel: UILabel!
     private var canRedeem = true
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,12 +48,15 @@ class EventRedeemViewController: UIViewController, CLLocationManagerDelegate, MK
             redeemButton.backgroundColor = .systemOrange
         }
         
+        titleLabel.text = event.name
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         map.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: Double(event.lat), longitude: Double(event.lon)), latitudinalMeters: 1000, longitudinalMeters: 1000), animated: true)
+        
+        
     }
     
     // render mkcircle as circle overlay

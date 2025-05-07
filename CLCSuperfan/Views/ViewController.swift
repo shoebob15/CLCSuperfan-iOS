@@ -10,7 +10,7 @@ import GoogleSignIn
 import KeychainSwift
 
 class ViewController: UIViewController {
-    @IBOutlet weak var email: UITextField! // should be email, mistyped
+    @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var status: UILabel!
     
