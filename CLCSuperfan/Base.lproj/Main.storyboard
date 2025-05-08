@@ -92,7 +92,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="b0V-2I-fX8"/>
                     <connections>
-                        <outlet property="email" destination="YgM-oC-vZe" id="ql6-J8-jOa"/>
+                        <outlet property="email" destination="YgM-oC-vZe" id="7eu-Sq-eq6"/>
                         <outlet property="firstName" destination="0ZG-Ge-ym2" id="ERk-JO-KvY"/>
                         <outlet property="lastName" destination="nkd-xb-2VQ" id="3C7-b1-nmf"/>
                         <outlet property="password" destination="dm7-uW-0ka" id="Sk8-RG-PVa"/>
@@ -162,16 +162,16 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="STw-fc-KtM">
                                         <rect key="frame" x="0.0" y="292" width="293" height="64"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mjl-OS-cxM">
-                                                <rect key="frame" x="0.0" y="0.0" width="142" height="64"/>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mjl-OS-cxM">
+                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="34.333333333333336"/>
                                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" image="applelogo" catalog="system" title=" Sign in">
                                                     <color key="baseBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QtQ-23-em3" customClass="GIDSignInButton">
-                                                <rect key="frame" x="151" y="0.0" width="142" height="64"/>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QtQ-23-em3" customClass="GIDSignInButton">
+                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="34.333333333333336"/>
                                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="Google">
@@ -197,15 +197,6 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BiP-kW-gul">
-                                <rect key="frame" x="127" y="689" width="138" height="71"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Help Page "/>
-                                <connections>
-                                    <segue destination="8Sf-R9-rqo" kind="show" id="T9m-9v-Pbt"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -217,30 +208,26 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="email" destination="wlx-Fc-Kfo" id="Tbc-En-jbg"/>
+                        <outlet property="email" destination="wlx-Fc-Kfo" id="tFb-bo-k43"/>
                         <outlet property="password" destination="rzP-VX-p5s" id="HMH-5b-SoP"/>
                         <outlet property="status" destination="bKY-Aa-gLw" id="n6X-1H-4M6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="954.96183206106866" y="741.54929577464793"/>
+            <point key="canvasLocation" x="956" y="742"/>
         </scene>
         <!--View Controller Schedule-->
         <scene sceneID="tHP-bV-FF8">
             <objects>
                 <viewController id="8Sf-R9-rqo" customClass="ViewControllerSchedule" customModule="CLCSuperfan" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="wje-qh-TZG">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                    <view key="view" contentMode="scaleToFill" id="wje-qh-TZG">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="KeA-c4-5Ei">
-                                <rect key="frame" x="0.0" y="118" width="393" height="666"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="KeA-c4-5Ei">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="393" id="oQa-h0-nO2"/>
-                                    <constraint firstAttribute="height" constant="230" id="vQc-Sp-jP5"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Y5Y-F0-WqL">
                                         <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
@@ -252,13 +239,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tutorial Page " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsg-lk-ebl">
-                                <rect key="frame" x="85" y="65" width="223" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="34"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Mcx-vi-XiA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -276,7 +256,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ZN-FG-Uwc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2672.5190839694656" y="741.54929577464793"/>
+            <point key="canvasLocation" x="2673" y="742"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="dlw-ot-QuK">
@@ -334,32 +314,25 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="20" reuseIdentifier="myCell" id="c4H-71-XBG" customClass="LeaderboardCell2" customModule="CLCSuperfan" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="40.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="50" width="393" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c4H-71-XBG" id="6eG-Hn-ppD" customClass="LeaderboardCell2" customModule="CLCSuperfan" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="40.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="52"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="X6j-l7-2XI">
-                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="40.333333333333336"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X6j-l7-2XI">
+                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="52"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="py9-CJ-2rD">
-                                                            <rect key="frame" x="0.0" y="0.0" width="39.333333333333336" height="40.333333333333336"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="40" id="jgo-K6-En6"/>
-                                                                <constraint firstAttribute="width" constant="40" id="t2E-dQ-mMc"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="0.0" y="0.0" width="104" height="52"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRd-mv-rD9">
-                                                            <rect key="frame" x="43.333333333333343" y="0.0" width="349.66666666666663" height="40.333333333333336"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                            <rect key="frame" x="104" y="0.0" width="289" height="52"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="py9-CJ-2rD" firstAttribute="width" secondItem="X6j-l7-2XI" secondAttribute="width" multiplier="0.1" id="zFX-oY-h2p"/>
-                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -368,11 +341,11 @@
                                                 <constraint firstItem="X6j-l7-2XI" firstAttribute="top" secondItem="6eG-Hn-ppD" secondAttribute="top" id="Vlt-x9-bUB"/>
                                                 <constraint firstItem="X6j-l7-2XI" firstAttribute="leading" secondItem="6eG-Hn-ppD" secondAttribute="leading" id="zv9-OO-fhj"/>
                                             </constraints>
+                                            <connections>
+                                                <outlet property="imageView" destination="py9-CJ-2rD" id="c7b-kq-qGk"/>
+                                                <outlet property="lab1" destination="ZRd-mv-rD9" id="7PV-JN-heF"/>
+                                            </connections>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="imageViewOutlet" destination="py9-CJ-2rD" id="fIV-55-lrK"/>
-                                            <outlet property="lab1" destination="ZRd-mv-rD9" id="b0h-AJ-FBk"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -560,12 +533,16 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jQ1-b8-ofw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Xyp-Rb-HJa" firstAttribute="top" secondItem="jQ1-b8-ofw" secondAttribute="top" id="EcL-kp-fiW"/>
                             <constraint firstItem="Xyp-Rb-HJa" firstAttribute="leading" secondItem="jQ1-b8-ofw" secondAttribute="leading" constant="10" id="iNs-Wd-boM"/>
                             <constraint firstItem="jQ1-b8-ofw" firstAttribute="trailing" secondItem="Xyp-Rb-HJa" secondAttribute="trailing" constant="10" id="tZ3-xE-xxA"/>
                             <constraint firstItem="jQ1-b8-ofw" firstAttribute="bottom" secondItem="Xyp-Rb-HJa" secondAttribute="bottom" id="wsm-gA-Veh"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="ZUu-Lx-pX5" appends="YES" id="89J-9N-QCU"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="e0h-49-A6b"/>
                     <connections>
@@ -579,6 +556,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bng-NA-BG8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="ZUu-Lx-pX5">
+                    <connections>
+                        <action selector="tapRecognized:" destination="eYl-fB-6sQ" id="hEv-3O-z6T"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3467.9389312977096" y="-661.26760563380287"/>
         </scene>
@@ -707,7 +689,7 @@
                             <constraint firstItem="A4h-Im-NXm" firstAttribute="leading" secondItem="c5D-Lz-13a" secondAttribute="leading" constant="10" id="isE-io-Njc"/>
                         </constraints>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="Mm1-7d-8vt" appends="YES" id="IbX-L2-ccZ"/>
+                            <outletCollection property="gestureRecognizers" destination="nM1-Ef-sV3" appends="YES" id="A99-jv-nSL"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="iVD-Ky-dXr"/>
@@ -717,16 +699,15 @@
                         <outlet property="eventCode" destination="OI0-6n-MRb" id="Nxv-pN-UrH"/>
                         <outlet property="eventTable" destination="Wbu-5O-W6R" id="tiX-rJ-dgI"/>
                         <outlet property="eventTitle" destination="79d-25-hbY" id="2wo-RP-KuU"/>
-                        <outlet property="gestureRecognizer" destination="Mm1-7d-8vt" id="wJV-ND-3FZ"/>
                         <outlet property="mapView" destination="bYM-3S-ODR" id="167-ZK-PkR"/>
                         <outlet property="startTimePicker" destination="oLi-yl-rXI" id="KVe-JM-RWC"/>
                         <outlet property="stopTimePicker" destination="VvG-bt-zPS" id="qok-MK-we4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gql-uf-aEB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Mm1-7d-8vt">
+                <tapGestureRecognizer id="nM1-Ef-sV3">
                     <connections>
-                        <action selector="tapRecognized:" destination="FRz-SQ-VO1" id="6RV-cR-SzZ"/>
+                        <action selector="tapRecognized:" destination="FRz-SQ-VO1" id="ZkP-lt-IdA"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -893,7 +874,6 @@
                         <outlet property="map" destination="ksd-ig-YTV" id="CqK-UI-dex"/>
                         <outlet property="redeemButton" destination="LnN-Za-bsH" id="7Xz-Tg-2SM"/>
                         <outlet property="scanLabel" destination="K09-l7-TR2" id="VmD-bt-JOQ"/>
-                        <outlet property="titleLabel" destination="Cdy-Rh-MQJ" id="WLR-7z-o4O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cm3-kx-Yjn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -38,9 +38,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var pointsLabel: UILabel!
     var events = [Event]()
     var selectedEvent: Event! = nil
-    var playbackPosition: TimeInterval = 125
+    
     var isAdmin = false
-    var player: AVAudioPlayer?
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -157,38 +156,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     private func sortEventsAlphabetically() {
         events.sort { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
        // eventTable.reloadData()
-    }
-   
-    func playSound() {
-        if let player = player, player.isPlaying{
-            player.currentTime = 125.0
-        }
-        else{
-            let urlString = Bundle.main.path(forResource: "tv off", ofType: "mp3")
-            do {
-                try AVAudioSession.sharedInstance().setMode(.default)
-                try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
-                
-                guard let urlString = urlString else {
-                    return
-                }
-                player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: urlString))
-                
-                guard let player = player else {
-                    return
-                }
-                player.currentTime = playbackPosition
-                player.play()
-            }
-            catch{
-                print("error")
-            }
-        }
-        
-    }
-
-    @IBAction func soundButton(_ sender: UIButton) {
-        playSound()
     }
     
 }

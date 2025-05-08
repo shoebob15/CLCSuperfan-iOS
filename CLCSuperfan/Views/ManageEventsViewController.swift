@@ -155,7 +155,9 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
         debugPrint("start: \(combinedStart)")
         debugPrint("stop: \(combinedStop)")
         
-        
+        debugPrint(day)
+        debugPrint(start)
+        debugPrint(stop)
         
         // edit mode
         if let event = selectedEvent, let index = selectedIndex {
