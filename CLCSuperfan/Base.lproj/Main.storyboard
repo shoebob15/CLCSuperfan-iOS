@@ -314,20 +314,20 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="20" reuseIdentifier="myCell" id="c4H-71-XBG" customClass="LeaderboardCell2" customModule="CLCSuperfan" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="52.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="50" width="393" height="53.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c4H-71-XBG" id="6eG-Hn-ppD" customClass="LeaderboardCell2" customModule="CLCSuperfan" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="52.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="53.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X6j-l7-2XI">
-                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="52.333333333333336"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="X6j-l7-2XI">
+                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="53.666666666666664"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="py9-CJ-2rD">
-                                                            <rect key="frame" x="0.0" y="0.0" width="104" height="52.333333333333336"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="104" height="53.666666666666664"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRd-mv-rD9">
-                                                            <rect key="frame" x="104" y="0.0" width="289" height="52.333333333333336"/>
+                                                            <rect key="frame" x="144" y="0.0" width="249" height="53.666666666666664"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -346,6 +346,10 @@
                                                 <outlet property="lab1" destination="ZRd-mv-rD9" id="7PV-JN-heF"/>
                                             </connections>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="imageViewOutlet" destination="py9-CJ-2rD" id="e1g-en-gjz"/>
+                                            <outlet property="lab1" destination="ZRd-mv-rD9" id="rVt-4Y-tLr"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -874,6 +878,7 @@
                         <outlet property="map" destination="ksd-ig-YTV" id="CqK-UI-dex"/>
                         <outlet property="redeemButton" destination="LnN-Za-bsH" id="7Xz-Tg-2SM"/>
                         <outlet property="scanLabel" destination="K09-l7-TR2" id="VmD-bt-JOQ"/>
+                        <outlet property="titleLabel" destination="Cdy-Rh-MQJ" id="9vX-ag-6bQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cm3-kx-Yjn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

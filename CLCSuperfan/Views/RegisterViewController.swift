@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController {
+class RegisterViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var email: UITextField!
     
@@ -26,6 +26,13 @@ class RegisterViewController: UIViewController {
         password.rightViewMode = UITextField.ViewMode.always
         password.rightView = passwordButton
         passwordButton.addTarget(self, action: #selector(passwordAction), for: .touchUpInside)
+        
+        // DONT ALLOW EMOJIS
+        firstName.delegate = self
+        lastName.delegate = self
+        
+        firstName.keyboardType = .asciiCapable
+        lastName.keyboardType = .asciiCapable
         
         super.viewDidLoad()
 
@@ -52,6 +59,17 @@ class RegisterViewController: UIViewController {
         firstName.resignFirstResponder()
         lastName.resignFirstResponder()
         
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let isContainEmoji = string.unicodeScalars.filter({ $0.properties.isEmoji }).count > 0
+        let numberCharacters = string.rangeOfCharacter(from: .decimalDigits)
+
+        if isContainEmoji && numberCharacters == nil {
+           return false
+        }
+        
+        return true
     }
     
     @IBAction func registerAction(_ sender: Any) {

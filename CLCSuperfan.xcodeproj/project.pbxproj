@@ -158,12 +158,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = G8MY4CG229;
+				DEVELOPMENT_TEAM = M432L3BRX5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CLCSuperfan/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "CLC Superfan";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
-				INFOPLIST_KEY_NSCameraUsageDescription = "I HATE XCODE";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Superfan needs access to your camera to scan QR codes";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -199,7 +199,7 @@
 				INFOPLIST_FILE = CLCSuperfan/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "CLC Superfan";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
-				INFOPLIST_KEY_NSCameraUsageDescription = "I HATE XCODE";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Superfan needs access to your camera to scan QR codes";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
