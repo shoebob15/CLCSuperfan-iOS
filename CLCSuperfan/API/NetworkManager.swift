@@ -19,11 +19,6 @@ enum NetworkError: Error {
 class NetworkManager {
     static let shared = NetworkManager()
 
-    // this url is the PRODUCTION url. use this if you are running on a physical device
-    // (or simulator), or if this is a production build.
-    // NOTE: this may be blocked on school networks (idk yet), so I might have to
-    // talk to IT about getting it whitelisted
-     
     static let apiUrl = "https://illegal-adrianna-clc-superfan-e909ede6.koyeb.app"
 
     
