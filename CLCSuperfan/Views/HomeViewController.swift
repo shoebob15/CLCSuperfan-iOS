@@ -15,7 +15,7 @@ class AppData {
     static var mostRecentScan: Date?
     
     static let emailAlert = UIAlertController(title: "Email Error", message: "Please enter a valid email", preferredStyle: .alert)
-    static let passwordAlert = UIAlertController(title: "Password Error", message: "Please enter a password", preferredStyle: .alert)
+    static let passwordAlert = UIAlertController(title: "Password Error", message: "Password must contain 8+ characters, 1 uppercase, and 1 special character", preferredStyle: .alert)
     static let firstNameAlert = UIAlertController(title: "First Name Error", message: "Please enter a first name", preferredStyle: .alert)
     static let lastNameAlert = UIAlertController(title: "Last Name Error", message: "Please enter a last name", preferredStyle: .alert)
     

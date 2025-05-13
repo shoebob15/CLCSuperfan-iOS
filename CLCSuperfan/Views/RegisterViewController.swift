@@ -78,25 +78,27 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                 if firstName.text != "" {
                     if lastName.text != "" {
                         if isValidEmail(email.text!) {
-                            NetworkManager.shared.request(api: AuthAPI.register(firstName: firstName.text!, lastName: lastName.text!, email: email.text!, password: password.text!)) { (result: Result<RegistrationResponse, NetworkError>) in
-                                DispatchQueue.main.async {
-                                    switch result {
-                                    case .success:
-                                        self.status.text = "Successfully registered!"
-                                        
-                                        let alert = UIAlertController(title: "Success!", message: "Successfully registered for CLC Superfan. You will now be returned to the sign in screen.", preferredStyle: .alert)
-                                        alert.addAction(UIAlertAction(title: "Ok", style: .default) { (action) in
+                            if isValidPassword(password.text!){
+                                NetworkManager.shared.request(api: AuthAPI.register(firstName: firstName.text!, lastName: lastName.text!, email: email.text!, password: password.text!)) { (result: Result<RegistrationResponse, NetworkError>) in
+                                    DispatchQueue.main.async {
+                                        switch result {
+                                        case .success:
+                                            self.status.text = "Successfully registered!"
                                             
-                                            self.dismiss(animated: true)
+                                            let alert = UIAlertController(title: "Success!", message: "Successfully registered for CLC Superfan. You will now be returned to the sign in screen.", preferredStyle: .alert)
+                                            alert.addAction(UIAlertAction(title: "Ok", style: .default) { (action) in
+                                                
+                                                self.dismiss(animated: true)
+                                                
+                                            })
+                                            self.present(alert, animated: true, completion: nil)
                                             
-                                        })
-                                        self.present(alert, animated: true, completion: nil)
-                                        
-                                    case .failure(let error):
-                                        if error == .unknown {
-                                            self.status.text = "Please create a stronger password and try again"
-                                        } else {
-                                            self.status.text = "An error occured: \(error)"
+                                        case .failure(let error):
+                                            if error == .unknown {
+                                                self.status.text = "Please create a stronger password and try again"
+                                            } else {
+                                                self.status.text = "An error occured: \(error)"
+                                            }
                                         }
                                     }
                                 }
@@ -130,6 +132,12 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         let emailRegEx = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}$"
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
+    }
+    
+    func isValidPassword(_ password: String) -> Bool {
+        let passRegEx = "^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$"
+        let passPred = NSPredicate(format:"SELF MATCHES %@", passRegEx)
+        return passPred.evaluate(with: password)
     }
     
 }
