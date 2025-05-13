@@ -29,8 +29,6 @@ class ViewController: UIViewController {
         password.rightView = passwordButton
         passwordButton.addTarget(self, action: #selector(passwordAction), for: .touchUpInside)
         
-        
-        
         super.viewDidLoad()
     }
     
@@ -61,8 +59,12 @@ class ViewController: UIViewController {
                         switch result {
                         case .success(let response):
                             self.status.text = "Logged in and assigned JWT \(response.token)"
-                            
                             self.authenticate(response.token)
+                            
+                            AppData.userEmail = self.email.text
+                            UserDefaults.standard.set(AppData.userEmail, forKey: "userEmail")
+                            AppData.userPassword = self.password.text
+                            UserDefaults.standard.set(AppData.userPassword, forKey: "userPassword")
                             
                         case .failure(let error):
                             switch error {

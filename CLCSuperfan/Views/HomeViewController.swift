@@ -19,6 +19,9 @@ class AppData {
     static let firstNameAlert = UIAlertController(title: "First Name Error", message: "Please enter a first name", preferredStyle: .alert)
     static let lastNameAlert = UIAlertController(title: "Last Name Error", message: "Please enter a last name", preferredStyle: .alert)
     
+    static var userEmail: String?
+    static var userPassword: String?
+    
     init() {
         if !AppData.inited {
             AppData.emailAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
