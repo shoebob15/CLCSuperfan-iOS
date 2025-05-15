@@ -142,4 +142,14 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         return passPred.evaluate(with: password)
     }
     
+    @IBAction func keyboardResign(_ sender: UITapGestureRecognizer) {
+        email.resignFirstResponder()
+        password.resignFirstResponder()
+        firstName.resignFirstResponder()
+        lastName.resignFirstResponder()
+    }
+    
+    
 }
+
+

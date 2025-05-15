@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var status: UILabel!
     
+    
     var vc: HomeViewController! = nil
     
     var isAdmin = false
@@ -141,5 +142,12 @@ class ViewController: UIViewController {
         
         vc.refresh()
         self.dismiss(animated: true)
+    }
+    
+    
+    @IBAction func keyboardResign(_ sender: UITapGestureRecognizer) {
+        email.resignFirstResponder()
+        password.resignFirstResponder()
+        
     }
 }
