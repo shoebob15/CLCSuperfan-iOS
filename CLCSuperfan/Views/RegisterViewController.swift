@@ -102,6 +102,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                                         }
                                     }
                                 }
+                            } else {
+                                self.present(AppData.passwordAlert, animated: true, completion: nil)
                             }
                         } else {
                             self.present(AppData.emailAlert, animated: true, completion: nil)
