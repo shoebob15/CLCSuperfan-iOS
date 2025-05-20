@@ -157,14 +157,7 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
         
         let combinedStart = combineDates(day, start)
         let combinedStop = combineDates(day, stop)
-        
-        debugPrint("start: \(combinedStart)")
-        debugPrint("stop: \(combinedStop)")
-        
-        debugPrint(day)
-        debugPrint(start)
-        debugPrint(stop)
-        
+
         // edit mode
         if let event = selectedEvent, let index = selectedIndex {
             let newEvent = Event(
@@ -180,11 +173,14 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
             // reset vc after editing
             eventTable.deselectRow(at: IndexPath(row: selectedIndex!, section: 0), animated: true)
             
-            resetFields()
             self.selectedEvent = nil
             self.selectedIndex = nil
             
             NetworkManager.shared.request(api: EventAPI.updateEvent(id: event.id.uuidString, event: newEvent)) { (result: Result<Event, NetworkError>) in
+                DispatchQueue.main.async {
+                    self.resetFields()
+                }
+                
                 switch result {
                 case .success:
                     print("edited event")
@@ -203,6 +199,10 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
                                  stopTime: Int(combinedStop.timeIntervalSince1970))
             
             NetworkManager.shared.request(api: EventAPI.createEvent(event: newEvent)) { (result: Result<Event, NetworkError>) in
+                DispatchQueue.main.async {
+                    self.resetFields()
+                }
+                
                 switch result {
                 case .success:
                     print("created new event")

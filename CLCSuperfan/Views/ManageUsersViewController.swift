@@ -19,6 +19,7 @@ class ManageUsersViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var role: UISegmentedControl!
+    @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
     
     
     override func viewDidLoad() {
@@ -26,6 +27,8 @@ class ManageUsersViewController: UIViewController, UITableViewDelegate, UITableV
         
         table.delegate = self
         table.dataSource = self
+        
+        tapGestureRecognizer.cancelsTouchesInView = false
         
         refresh()
 

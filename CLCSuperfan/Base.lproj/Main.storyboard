@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -131,7 +132,7 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CLC Superfan" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84V-KW-yfc">
                                         <rect key="frame" x="0.0" y="0.0" width="293" height="93.333333333333329"/>
-                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="39"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="39"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -230,6 +231,7 @@
                         <outlet property="email" destination="wlx-Fc-Kfo" id="tFb-bo-k43"/>
                         <outlet property="loginProvidersStackView" destination="STw-fc-KtM" id="oGU-3p-uQQ"/>
                         <outlet property="password" destination="rzP-VX-p5s" id="HMH-5b-SoP"/>
+                        <outlet property="tapGestureRecognizer" destination="UMm-0k-kyI" id="Z34-KW-38g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -300,6 +302,16 @@
                                     <color key="baseBackgroundColor" systemColor="systemOrangeColor"/>
                                 </buttonConfiguration>
                             </button>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecV-FV-bo9">
+                                <rect key="frame" x="16" y="281" width="151" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="  1h23m" cornerStyle="medium">
+                                    <imageReference key="image" image="clock.arrow.trianglehead.counterclockwise.rotate.90" catalog="system" symbolScale="default"/>
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
+                                    <color key="baseBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CaP-st-gQ7">
                                 <rect key="frame" x="184" y="273" width="0.0" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -314,6 +326,30 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Events have a cooldown after redeeming to avoid abuse" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4G-Tm-yPp">
+                                <rect key="frame" x="192" y="286" width="185" height="66"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="The leaderboard displays the top 10 patrons that have the most points" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxc-Qq-R5d">
+                                <rect key="frame" x="192" y="381" width="185" height="94"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Zr-be-QGa">
+                                <rect key="frame" x="16" y="404" width="151" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="  Leaderboard" cornerStyle="medium">
+                                    <imageReference key="image" image="trophy.fill" catalog="system" symbolScale="default"/>
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
+                                    <color key="baseBackgroundColor" name="AccentColor"/>
+                                </buttonConfiguration>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Gje-1h-8ON"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -380,20 +416,20 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="20" reuseIdentifier="myCell" id="c4H-71-XBG" customClass="LeaderboardCell2" customModule="CLCSuperfan" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="55.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="50" width="393" height="57"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c4H-71-XBG" id="6eG-Hn-ppD" customClass="LeaderboardCell2" customModule="CLCSuperfan" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="55.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="57"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="X6j-l7-2XI">
-                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="55.333333333333336"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="57"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="py9-CJ-2rD">
-                                                            <rect key="frame" x="0.0" y="0.0" width="104" height="55.333333333333336"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="104" height="57"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRd-mv-rD9">
-                                                            <rect key="frame" x="144" y="0.0" width="249" height="55.333333333333336"/>
+                                                            <rect key="frame" x="144" y="0.0" width="249" height="57"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -623,6 +659,7 @@
                         <outlet property="password" destination="leh-rt-J6D" id="TaW-pz-WdI"/>
                         <outlet property="role" destination="eli-CM-bfj" id="NA9-ll-Tbh"/>
                         <outlet property="table" destination="DZp-Y9-iSQ" id="QcA-fJ-yp0"/>
+                        <outlet property="tapGestureRecognizer" destination="ZUu-Lx-pX5" id="eHK-n6-KaC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bng-NA-BG8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -803,16 +840,16 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZPB-Dn-u9P">
-                                        <rect key="frame" x="0.0" y="41.666666666666657" width="353" height="26"/>
+                                        <rect key="frame" x="0.0" y="41.666666666666657" width="353" height="34.333333333333343"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points: 12" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8F-VS-vqc">
-                                                <rect key="frame" x="0.0" y="0.0" width="300" height="26"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="34.333333333333336"/>
                                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="23"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oeb-x0-2QE">
-                                                <rect key="frame" x="300" y="0.0" width="53" height="26"/>
+                                                <rect key="frame" x="300" y="0.0" width="53" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="info.circle" catalog="system"/>
                                                 <connections>
@@ -825,7 +862,7 @@
                                         </constraints>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fh9-ys-DRb">
-                                        <rect key="frame" x="0.0" y="76.666666666666629" width="353" height="482"/>
+                                        <rect key="frame" x="0.0" y="85.000000000000028" width="353" height="473.66666666666674"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="eventCell" textLabel="Lid-ic-acc" detailTextLabel="vmc-7b-Mj1" style="IBUITableViewCellStyleValue1" id="fGU-Gf-E0L">
@@ -861,7 +898,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAD-Qk-Drf">
                                                 <rect key="frame" x="0.0" y="0.0" width="172" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="Sign Out"/>
+                                                <buttonConfiguration key="configuration" style="filled" image="rectangle.portrait.and.arrow.right.fill" catalog="system" title=" Sign Out"/>
                                                 <connections>
                                                     <action selector="signOut:" destination="rIk-CL-KzG" eventType="touchUpInside" id="ftI-lW-q4A"/>
                                                 </connections>
@@ -869,7 +906,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j9E-Ls-Wc3">
                                                 <rect key="frame" x="181" y="0.0" width="172" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="filled" title="Leaderboard"/>
+                                                <buttonConfiguration key="configuration" style="filled" image="trophy.fill" catalog="system" title=" Leaderboard">
+                                                    <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
+                                                </buttonConfiguration>
                                                 <connections>
                                                     <segue destination="IgA-Y1-7Bt" kind="show" id="VMJ-UT-LCp"/>
                                                 </connections>
@@ -893,6 +932,7 @@
                         <outlet property="eventTable" destination="fh9-ys-DRb" id="qVJ-yc-TU9"/>
                         <outlet property="greeting" destination="Un8-Lh-kK4" id="Byq-Qq-gmB"/>
                         <outlet property="pointsLabel" destination="K8F-VS-vqc" id="gba-hq-ylc"/>
+                        <outlet property="signOutButton" destination="bAD-Qk-Drf" id="TZC-sa-8n8"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="authSegue" modalPresentationStyle="overFullScreen" modalTransitionStyle="coverVertical" id="Xhj-eh-v1d"/>
                         <segue destination="eLx-Ia-XI2" kind="show" identifier="eventDetailSegue" id="bqP-qe-Xz0"/>
                         <segue destination="kyA-7J-5xO" kind="show" identifier="adminSegue" id="qfi-V9-aXl"/>
@@ -1005,10 +1045,16 @@
         </scene>
     </scenes>
     <resources>
+        <image name="clock.arrow.trianglehead.counterclockwise.rotate.90" catalog="system" width="128" height="119"/>
         <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="keyboard.chevron.compact.down" catalog="system" width="128" height="100"/>
         <image name="list.bullet.clipboard.fill" catalog="system" width="98" height="128"/>
         <image name="pawprint.fill" catalog="system" width="128" height="112"/>
+        <image name="rectangle.portrait.and.arrow.right.fill" catalog="system" width="128" height="109"/>
+        <image name="trophy.fill" catalog="system" width="128" height="128"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

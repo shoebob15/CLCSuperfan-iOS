@@ -35,6 +35,8 @@ class AppData {
     }
 }
 
+
+
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var eventTable: UITableView!
     
@@ -43,6 +45,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var pointsLabel: UILabel!
     var events = [Event]()
     var selectedEvent: Event! = nil
+    @IBOutlet weak var signOutButton: UIButton!
+    
+    var signOutTimer = Timer()
+    var canSignOut = false
+
     
     var isAdmin = false
 
@@ -59,6 +66,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             performSegue(withIdentifier: "authSegue", sender: self)
         } else {
             fetchEvents()
+            getUser()
         }
         
     }
@@ -66,9 +74,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         getUser()
         
-        if let lastScan = UserDefaults.standard.object(forKey: "mostRecentScan") {
-            AppData.mostRecentScan = lastScan as? Date
-        }
+        signOutTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(checkSignOut), userInfo: nil, repeats: true)
+        
+
+        
+
         
     }
     
@@ -128,6 +138,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             fetchEvents()
             getUser()
+        }
+    }
+    
+    @objc func checkSignOut() {
+        canSignOut = CooldownManager.canRedeem
+        
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+                
+        if !canSignOut {
+            signOutButton.titleLabel!.text = " \(CooldownManager.timeLeft.secondsToHMS())"
+            signOutButton.imageView!.image = UIImage(systemName: "clock.arrow.trianglehead.counterclockwise.rotate.90")
+            signOutButton.isEnabled = false
+        } else {
+            signOutButton.titleLabel!.text = " Sign Out"
+            signOutButton.imageView!.image = UIImage(systemName: "rectangle.portrait.and.arrow.right.fill")
+            signOutButton.isEnabled = true
         }
     }
     

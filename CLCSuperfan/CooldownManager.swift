@@ -7,6 +7,7 @@
 // manages if a user can redeem an event or log out
 import Foundation
 
+// TODO: save lastRedeem in userdefaults
 class CooldownManager {
     static var lastRedeem: Int? // unix-date of when a user last redeemed an event
     

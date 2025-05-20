@@ -13,6 +13,7 @@ import AuthenticationServices
 class ViewController: UIViewController, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
 
     
+    @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
     
@@ -36,6 +37,8 @@ class ViewController: UIViewController, ASAuthorizationControllerDelegate, ASAut
         let button = ASAuthorizationAppleIDButton()
         button.addTarget(self, action: #selector(appleSignIn), for: .touchUpInside)
         loginProvidersStackView.addArrangedSubview(button)
+        
+        tapGestureRecognizer.cancelsTouchesInView = false
         
         super.viewDidLoad()
     }
@@ -104,7 +107,6 @@ class ViewController: UIViewController, ASAuthorizationControllerDelegate, ASAut
     }
     
     @objc func appleSignIn() {
-        print("this doesn't work")
         let appleIDProvider = ASAuthorizationAppleIDProvider()
          let request = appleIDProvider.createRequest()
          request.requestedScopes = [.fullName, .email]
@@ -175,6 +177,8 @@ class ViewController: UIViewController, ASAuthorizationControllerDelegate, ASAut
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+
+        
         switch authorization.credential {
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
             

@@ -21,7 +21,7 @@ class EventRedeemViewController: UIViewController, CLLocationManagerDelegate, MK
 
     @IBOutlet weak var titleLabel: UILabel!
     
-    var canRedeem = true
+    var canRedeem = false
     
     var redeemTimer = Timer()
     
