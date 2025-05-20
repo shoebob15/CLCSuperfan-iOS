@@ -21,6 +21,7 @@ class AppData {
     
     static var userEmail: String?
     static var userPassword: String?
+    static let emailExistsAlert = UIAlertController(title: "Email Already Exists", message: "Please sign up with a different email or sign in", preferredStyle: .alert)
     
     init() {
         if !AppData.inited {
@@ -28,6 +29,7 @@ class AppData {
             AppData.passwordAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             AppData.firstNameAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             AppData.lastNameAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            AppData.emailExistsAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         }
         AppData.inited = true
     }

@@ -8,12 +8,15 @@
 import UIKit
 import GoogleSignIn
 import KeychainSwift
+import AuthenticationServices
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+
+    
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
-    @IBOutlet weak var status: UILabel!
     
+    @IBOutlet weak var loginProvidersStackView: UIStackView!
     
     var vc: HomeViewController! = nil
     
@@ -30,9 +33,13 @@ class ViewController: UIViewController {
         password.rightView = passwordButton
         passwordButton.addTarget(self, action: #selector(passwordAction), for: .touchUpInside)
         
+        let button = ASAuthorizationAppleIDButton()
+        button.addTarget(self, action: #selector(appleSignIn), for: .touchUpInside)
+        loginProvidersStackView.addArrangedSubview(button)
+        
         super.viewDidLoad()
     }
-    
+
     @objc func passwordAction(sender: UIButton!) {
         if password.isSecureTextEntry {
             sender.setImage(UIImage(systemName: "eye.slash"), for: .normal)
@@ -59,7 +66,7 @@ class ViewController: UIViewController {
                     DispatchQueue.main.async {
                         switch result {
                         case .success(let response):
-                            self.status.text = "Logged in and assigned JWT \(response.token)"
+
                             self.authenticate(response.token)
                             
                             AppData.userEmail = self.email.text
@@ -70,12 +77,16 @@ class ViewController: UIViewController {
                         case .failure(let error):
                             switch error {
                             case .unauthorized:
-                                self.status.text = "Invalid email/password, or account hasn't been created"
+                                break
+                                // TODO: show alertcontroller for invalid username/password
                                 
-                            case .unknown: // TODO: better error handling system
-                                self.status.text = "Email already in use"
+                            case .unknown:
+                                break
+                                // TODO: better error handling system
+                                // "email already in use"
                             default:
-                                self.status.text = "An error occured: \(error)"
+                                break
+                                // "an error occurred"
                             }
                         }
                         
@@ -90,6 +101,18 @@ class ViewController: UIViewController {
             self.present(AppData.emailAlert, animated: true, completion: nil)
         }
         
+    }
+    
+    @objc func appleSignIn() {
+        print("this doesn't work")
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+         let request = appleIDProvider.createRequest()
+         request.requestedScopes = [.fullName, .email]
+         
+         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+         authorizationController.delegate = self
+         authorizationController.presentationContextProvider = self
+         authorizationController.performRequests()
     }
     
     @IBAction func signInWithGoogle(_ sender: UIButton) {
@@ -111,7 +134,7 @@ class ViewController: UIViewController {
                         
                     case .failure(let error):
                         DispatchQueue.main.async {
-                            self.status.text = "Unable to sign in with Google currently"
+                           // sign in with google error
                         }
                     }
                 }
@@ -149,5 +172,29 @@ class ViewController: UIViewController {
         email.resignFirstResponder()
         password.resignFirstResponder()
         
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        switch authorization.credential {
+        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+            
+            // Create an account in your system.
+            let userIdentifier = appleIDCredential.user
+            let fullName = appleIDCredential.fullName
+            let email = appleIDCredential.email
+            
+        case let passwordCredential as ASPasswordCredential:
+            
+            // Sign in using an existing iCloud Keychain credential.
+            let username = passwordCredential.user
+            let password = passwordCredential.password
+            
+        default:
+            break
+        }
+    }
+    
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        return self.view.window!
     }
 }

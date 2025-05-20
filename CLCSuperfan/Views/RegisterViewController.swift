@@ -72,7 +72,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    @IBAction func registerAction(_ sender: Any) {
+    @IBAction func registerAction(_ sender: UIButton) {
+        sender.isEnabled = false
+        
         if email.text != "" {
             if password.text != "" {
                 if firstName.text != "" {

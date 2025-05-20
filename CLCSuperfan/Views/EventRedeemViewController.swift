@@ -16,10 +16,14 @@ class EventRedeemViewController: UIViewController, CLLocationManagerDelegate, MK
     
     @IBOutlet weak var redeemButton: UIButton!
     
+    
     @IBOutlet weak var scanLabel: UILabel!
 
     @IBOutlet weak var titleLabel: UILabel!
-    private var canRedeem = true
+    
+    var canRedeem = true
+    
+    var redeemTimer = Timer()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -36,19 +40,10 @@ class EventRedeemViewController: UIViewController, CLLocationManagerDelegate, MK
 
         map.showAnnotations(map.annotations, animated: true)
         
-        if AppData.mostRecentScan != nil && AppData.mostRecentScan!.timeIntervalSinceNow < 3600 {
-                redeemButton.backgroundColor = .systemGray
-            redeemButton.layer.cornerRadius = 10
-            scanLabel.text = "Next scan in \((Int)(60 + (AppData.mostRecentScan!.timeIntervalSinceNow / 60.0)))mins \((Int)(60 + AppData.mostRecentScan!.timeIntervalSinceNow.truncatingRemainder(dividingBy: 60)))secs"
-                scanLabel.isHidden = false
-
-            canRedeem = false
-        } else {
-            canRedeem = true
-            scanLabel.isHidden = true
-            redeemButton.backgroundColor = .systemOrange
-            redeemButton.layer.cornerRadius = 10
-        }
+        redeemTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(checkRedeem), userInfo: nil, repeats: true)
+        
+        redeemTimer.fire()
+        
         
         titleLabel.text = event.name
     }
@@ -57,8 +52,25 @@ class EventRedeemViewController: UIViewController, CLLocationManagerDelegate, MK
         super.viewDidAppear(animated)
         
         map.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: Double(event.lat), longitude: Double(event.lon)), latitudinalMeters: 1000, longitudinalMeters: 1000), animated: true)
+    }
+    
+    @objc func checkRedeem() {
+        canRedeem = CooldownManager.canRedeem
         
-        
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+                
+        if !canRedeem {
+            redeemButton.titleLabel!.numberOfLines = 3
+            redeemButton.titleLabel!.lineBreakMode = .byWordWrapping
+            redeemButton.titleLabel!.text = " \(CooldownManager.timeLeft.secondsToHMS())"
+            redeemButton.imageView!.image = UIImage(systemName: "clock.arrow.trianglehead.counterclockwise.rotate.90")
+            redeemButton.isEnabled = false
+        } else {
+            redeemButton.titleLabel!.text = " Redeem"
+            redeemButton.imageView!.image = UIImage(systemName: "pawprint.fill")
+            redeemButton.isEnabled = true
+        }
     }
     
     // render mkcircle as circle overlay

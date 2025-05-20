@@ -103,13 +103,11 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             let failure = UIAlertController(title: "Unable to Redeem", message: "Redemption could not be verified. Try going inside the event geofence or scanning the correct QR code.", preferredStyle: .alert)
             
             let action = UIAlertAction(title: "Ok", style: .default) { action in
-                self.dismiss(animated: true)
-                self.dismiss(animated: true)
-
+                self.navigationController?.popViewController(animated: true)
             }
-            success.addAction(UIAlertAction(title: "Ok", style: .default))
+            success.addAction(action)
             
-            failure.addAction(UIAlertAction(title: "Ok", style: .default))
+            failure.addAction(action)
 
             
             switch result {
@@ -117,11 +115,11 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             case .success(let response):
                 if response.success {
                     print("event validated!")
-                    AppData.mostRecentScan = Date()
-                    UserDefaults.standard.set(AppData.mostRecentScan, forKey: "mostRecentScan")
                     DispatchQueue.main.async {
                         self.present(success, animated: true)
                     }
+                    
+                    CooldownManager.userRedeemed()
                 } else {
                     DispatchQueue.main.async {
                         self.present(failure, animated: true)
