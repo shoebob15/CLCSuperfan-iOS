@@ -17,6 +17,8 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
     
     @IBOutlet weak var mapView: MKMapView!
     
+    @IBOutlet weak var stepper: UIStepper!
+    
     @IBOutlet weak var addButton: UIButton!
     
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -26,6 +28,10 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet var gestureRecognizer: UITapGestureRecognizer!
     // MARK: - variables
     private var events = [Event]()
+    
+    private var score = 5
+    
+    @IBOutlet weak var scoreText: UILabel!
     
     private var selectedCoordinate = CLLocationCoordinate2D(latitude: 42.23708, longitude: -88.32256) // set default coords to clc
     
@@ -308,6 +314,11 @@ class ManageEventsViewController: UIViewController, UITableViewDelegate, UITable
     @IBAction func tapRecognized(_ sender: UITapGestureRecognizer) {
         eventTitle.resignFirstResponder()
         eventCode.resignFirstResponder()
+    }
+    
+    @IBAction func stepped(_ sender: Any) {
+        self.score = Int(stepper.value)
+        scoreText.text = "Score: \(self.score)"
     }
     
 }
